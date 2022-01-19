@@ -1,8 +1,8 @@
 """create comments table
 
-Revision ID: 48081f39ce1d
-Revises: eb36124acdee
-Create Date: 2022-01-19 13:59:25.308348
+Revision ID: 5c223b8e513b
+Revises: b58b09c6e4c6
+Create Date: 2022-01-19 15:04:38.693739
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '48081f39ce1d'
-down_revision = 'eb36124acdee'
+revision = '5c223b8e513b'
+down_revision = 'b58b09c6e4c6'
 branch_labels = None
 depends_on = None
 
@@ -27,7 +27,7 @@ def upgrade():
     sa.Column('userId', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
-    sa.ForeignKeyConstraint(['profileId'], ['profiles.id'], ),
+    sa.ForeignKeyConstraint(['profileId'], ['profiles.id'], ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

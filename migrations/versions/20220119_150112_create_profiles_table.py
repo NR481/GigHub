@@ -1,8 +1,8 @@
 """create profiles table
 
-Revision ID: eb36124acdee
-Revises: ffdc0a98111c
-Create Date: 2022-01-19 13:57:40.107770
+Revision ID: b58b09c6e4c6
+Revises: 16b2e5376737
+Create Date: 2022-01-19 15:01:12.749582
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'eb36124acdee'
-down_revision = 'ffdc0a98111c'
+revision = 'b58b09c6e4c6'
+down_revision = '16b2e5376737'
 branch_labels = None
 depends_on = None
 

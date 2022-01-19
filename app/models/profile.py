@@ -14,7 +14,7 @@ class Profile(db.Model):
   userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
   user = db.relationship('User', back_populates='profiles')
-  comments = db.relationship('Comment', back_populates='profile')
+  comments = db.relationship('Comment', back_populates='profile', cascade='all, delete', passive_deletes=True)
 
   def to_dict(self):
     return {
