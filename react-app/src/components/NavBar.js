@@ -10,7 +10,9 @@ const NavBar = () => {
   const user = useSelector(state => state.session.user)
   return (
     <nav>
-      <h1>GigHub</h1>
+      <NavLink to='/' exact={true}>
+        GigHub
+      </NavLink>
       <ul>
         {!user &&
           <li>
