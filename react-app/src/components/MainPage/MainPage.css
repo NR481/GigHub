@@ -2,3 +2,14 @@
   height: 500px;
   width: 800px;
 }
+
+.profile-img {
+  height: 200px;
+  width: 250px;
+}
+
+.featured-artists {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+}
