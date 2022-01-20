@@ -6,6 +6,9 @@ import { signUp } from '../../store/session';
 const SignUpForm = ({ setModal }) => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
@@ -15,7 +18,7 @@ const SignUpForm = ({ setModal }) => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUp(username, firstName, lastName, email, imageUrl, password));
       if (data) {
         setErrors(data)
       }
@@ -39,6 +42,18 @@ const SignUpForm = ({ setModal }) => {
     setRepeatPassword(e.target.value);
   };
 
+  const updateFirstName = (e) => {
+    setFirstName(e.target.value);
+  };
+
+  const updateLastName = (e) => {
+    setLastName(e.target.value);
+  };
+
+  const updateImageUrl = (e) => {
+    setImageUrl(e.target.value);
+  };
+
   if (user) {
     return <Redirect to='/' />;
   }
@@ -49,6 +64,20 @@ const SignUpForm = ({ setModal }) => {
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
+      </div>
+      <div>
+        <label>First Name</label>
+        <input
+          value={firstName}
+          onChange={updateFirstName}
+        />
+      </div>
+      <div>
+        <label>Last Name</label>
+        <input
+          value={lastName}
+          onChange={updateLastName}
+        />
       </div>
       <div>
         <label>User Name</label>
@@ -67,6 +96,13 @@ const SignUpForm = ({ setModal }) => {
           onChange={updateEmail}
           value={email}
         ></input>
+      </div>
+      <div>
+        <label>Image URL</label>
+        <input
+          value={imageUrl}
+          onChange={updateImageUrl}
+        />
       </div>
       <div>
         <label>Password</label>
