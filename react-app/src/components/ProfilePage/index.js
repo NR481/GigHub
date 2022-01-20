@@ -36,7 +36,9 @@ const ProfilePage = () => {
       {showForm &&
         <BookingSideBar />
       }
-      <EditProfileModal id={profile?.id} editName={profile?.name} editDescription={profile?.description} editImageUrl={profile?.imageUrl} editCategory={profile?.category} editLocation={profile?.location} userId={user?.id} />
+      {user?.id === profile?.userId &&
+        <EditProfileModal id={profile?.id} editName={profile?.name} editDescription={profile?.description} editImageUrl={profile?.imageUrl} editCategory={profile?.category} editLocation={profile?.location} userId={user?.id} />
+      }
     </>
   )
 }
