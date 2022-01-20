@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import { getFeaturedProfiles, addProfile } from "../../store/profiles"
 import './MainPage.css'
 
@@ -51,11 +51,13 @@ const MainPage = () => {
       <div className="featured-artists">
         {featuredProfiles?.length > 0 &&
           featuredProfiles?.map(profile => (
-            <img
-              src={profile.imageUrl}
-              alt='artist headshots'
-              className="profile-img"
-            />
+            <Link to={`/profiles/${profile.id}`}>
+              <img
+                src={profile.imageUrl}
+                alt='artist headshots'
+                className="profile-img"
+              />
+            </Link>
           )
         )}
       </div>
