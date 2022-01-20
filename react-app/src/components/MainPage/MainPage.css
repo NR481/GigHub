@@ -10,6 +10,7 @@
 
 .featured-artists {
   display: flex;
-  flex-wrap: wrap;
-  width: 80%;
+  flex-wrap: nowrap;
+  overflow: scroll;
+  scroll-behavior: smooth;
 }

@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getFeaturedProfiles } from "../../store/profiles"
+import { useHistory } from "react-router-dom"
+import { getFeaturedProfiles, addProfile } from "../../store/profiles"
 import './MainPage.css'
 
 const MainPage = () => {
   const dispatch = useDispatch()
+  const history = useHistory()
   const profilesObj = useSelector(state => state.profiles)
+  const user = useSelector(state => state.session.user)
 
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
@@ -21,6 +24,22 @@ const MainPage = () => {
   if (profilesObj) {
     featuredProfiles = Object.values(profilesObj)
   }
+
+  const submitNewProfile = async (e) => {
+    e.preventDefault()
+
+    const newProfile = {
+      name,
+      description,
+      imageUrl,
+      category,
+      location,
+      userId: +user?.id
+    }
+    await dispatch(addProfile(newProfile))
+      .then((res) => history.push(`/profiles/${res.id}`))
+  }
+
 
   return (
     <div>
@@ -41,7 +60,7 @@ const MainPage = () => {
         )}
       </div>
       <h2>Create an artist profile and start getting booked!</h2>
-      <form>
+      <form onSubmit={submitNewProfile}>
         <input
           value={name}
           onChange={(e) => setName(e.target.value)}
