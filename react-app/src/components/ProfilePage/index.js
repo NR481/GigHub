@@ -3,9 +3,11 @@ import { useSelector, useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
 import { getFeaturedProfiles } from "../../store/profiles"
 import BookingSideBar from "../BookingSideBar"
+import EditProfileModal from "../EditProfile/EditProfileModal"
 
 const ProfilePage = () => {
   const profileObj = useSelector(state => state.profiles)
+  const user = useSelector(state => state.session.user)
   const { id } = useParams()
   const dispatch = useDispatch()
 
@@ -34,6 +36,7 @@ const ProfilePage = () => {
       {showForm &&
         <BookingSideBar />
       }
+      <EditProfileModal id={profile?.id} editName={profile?.name} editDescription={profile?.description} editImageUrl={profile?.imageUrl} editCategory={profile?.category} editLocation={profile?.location} userId={user?.id} />
     </>
   )
 }

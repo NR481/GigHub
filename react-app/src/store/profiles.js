@@ -1,6 +1,7 @@
 const GET_PROFILES = 'profiles/GET_PROFILES'
 const ADD_PROFILE = 'profiles/ADD_PROFILES'
-const ALL_PROFILES = 'profiles/ALL_PROFILES'
+const EDIT_PROFILE = 'profiles/EDIT_PROFILE'
+const DELETE_PROFILE = 'profiles/DELETE_PROFILES'
 
 const getProfiles = (profiles) => ({
   type: GET_PROFILES,
@@ -12,10 +13,17 @@ const createProfile = (profile) => ({
   profile
 })
 
-// const getAllProfiles = (profiles) => ({
-//   type: ALL_PROFILES,
-//   profiles
-// })
+const editProfile = (profile) => ({
+  type: EDIT_PROFILE,
+  profile
+})
+
+const deleteProfile = (id) => ({
+  type: DELETE_PROFILE,
+  id
+})
+
+
 
 export const getFeaturedProfiles = () => async (dispatch) => {
   const response = await fetch('/api/profiles/')
@@ -23,10 +31,6 @@ export const getFeaturedProfiles = () => async (dispatch) => {
   dispatch(getProfiles(data))
   return data
 }
-
-// export const getEveryProfile = () => async (dispatch) => {
-//   const response = await fetch('/api/prof')
-// }
 
 export const addProfile = (profile) => async (dispatch) => {
   const response = await fetch('/api/profiles/', {
@@ -37,6 +41,24 @@ export const addProfile = (profile) => async (dispatch) => {
   const data = await response.json()
   dispatch(createProfile(data))
   return data
+}
+
+export const modifyProfile = (profile, id) => async (dispatch) => {
+  const response = await fetch(`/api/profiles/${id}/`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(profile)
+  })
+  const data = await response.json()
+  dispatch(editProfile(data))
+  return data
+}
+
+export const removeProfile = (id) => async (dispatch) => {
+  const response = await fetch(`/api/profiles/${id}/`, {
+    method: 'DELETE'
+  })
+  if (response.ok) dispatch(deleteProfile(id))
 }
 
 const profilesReducer = (state = {}, action) => {
@@ -52,6 +74,14 @@ const profilesReducer = (state = {}, action) => {
       newState = { ...state,
         [action.profile.id]: action.profile
       }
+      return newState
+    case EDIT_PROFILE:
+      newState = { ...state }
+      newState[action.profile.id] = action.profile
+      return newState
+    case DELETE_PROFILE:
+      newState = { ...state }
+      delete newState[action.id]
       return newState
     default:
       return state

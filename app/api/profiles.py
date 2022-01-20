@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import Blueprint, request
 from app.models import db, Profile
 from flask_login import login_required, current_user
@@ -31,3 +32,30 @@ def new_profile():
 
     return profile.to_dict()
   return form.errors
+
+@profile_routes.route('/<int:id>/', methods=['PUT'])
+@login_required
+def edit_profile(id):
+  form = NewProfileForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+  profile = Profile.query.get(id)
+
+  if form.validate_on_submit():
+    profile.name = form.data['name']
+    profile.description = form.data['description']
+    profile.imageUrl = form.data['imageUrl']
+    profile.category = form.data['category']
+    profile.location = form.data['location']
+    profile.userId = current_user.id
+
+    db.session.commit()
+    return profile.to_dict()
+  return form.errors
+
+@profile_routes.route('/<int:id>/', methods=['DELETE'])
+@login_required
+def delete_profile(id):
+  profile = Profile.query.get(id)
+  db.session.delete(profile)
+  db.session.commit()
+  return { "Delete": "Success"}
