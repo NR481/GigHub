@@ -1,0 +1,28 @@
+nav {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px 0;
+}
+
+.title {
+  position: absolute;
+  left: 0px;
+  text-decoration: none;
+  color: #FC5647;
+  font-family: "Courgette", cursive;
+  font-size: 30px;
+}
+
+.title:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+}
+
+.nav-links > li {
+  margin: 0 5px;
+}

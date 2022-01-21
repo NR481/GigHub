@@ -5,15 +5,16 @@ import { NavLink } from 'react-router-dom';
 import LoginFormModal from '../auth/LoginFormModal';
 import LogoutButton from '../auth/LogoutButton';
 import SignupFormModal from '../auth/SignupFormModal';
+import './NavBar.css'
 
 const NavBar = () => {
   const user = useSelector(state => state.session.user)
   return (
     <nav>
       <NavLink to='/' exact={true}>
-        GigHub
+        <h1 className='title'>GigHub</h1>
       </NavLink>
-      <ul>
+      <ul className='nav-links'>
         {!user &&
           <li>
             <LoginFormModal />
