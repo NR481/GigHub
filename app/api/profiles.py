@@ -1,6 +1,6 @@
 from crypt import methods
 from flask import Blueprint, request
-from app.models import db, Profile
+from app.models import db, Profile, Comment
 from flask_login import login_required, current_user
 from ..forms import NewProfileForm
 
@@ -59,3 +59,8 @@ def delete_profile(id):
   db.session.delete(profile)
   db.session.commit()
   return { "Delete": "Success"}
+
+@profile_routes.route('/<int:id>/comments/')
+def get_comments(id):
+  comments = Comment.query.filter(Comment.profileId == id)
+  return {'comments': [comment.to_dict() for comment in comments]}
