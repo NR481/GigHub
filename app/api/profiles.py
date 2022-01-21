@@ -1,4 +1,3 @@
-from crypt import methods
 from flask import Blueprint, request
 from app.models import db, Profile, Comment
 from flask_login import login_required, current_user

@@ -32,7 +32,7 @@ const ProfilePage = () => {
         <h2>{profile?.name}</h2>
         <p>{profile?.description}</p>
         <h2>See what all the buzz is about...</h2>
-        <Comments profile={profile} />
+        <Comments profile={profile} user={user} />
       </div>
       <button onClick={onClick}>Book This Artist</button>
       {showForm &&

@@ -52,7 +52,7 @@ const MainPage = () => {
       <div className="featured-artists">
         {featuredProfiles?.length > 0 &&
           featuredProfiles?.map(profile => (
-            <Link to={`/profiles/${profile.id}`}>
+            <Link to={`/profiles/${profile.id}`} key={profile.id}>
               <img
                 src={profile.imageUrl}
                 alt='artist headshots'

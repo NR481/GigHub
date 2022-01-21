@@ -1,10 +1,13 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { profileComments } from "../../store/comments"
+import { makeComment, profileComments } from "../../store/comments"
 
-const Comments = ({ profile }) => {
+const Comments = ({ profile, user }) => {
   const dispatch = useDispatch()
   const commentsObj = useSelector(state => state.comments)
+
+  const [comment, setComment] = useState('')
+  const [rating, setRating] = useState(5)
 
   useEffect(() => {
     dispatch(profileComments(profile?.id))
@@ -15,14 +18,49 @@ const Comments = ({ profile }) => {
     comments = Object.values(commentsObj)
   }
 
+  const onSubmit = async (e) => {
+    e.preventDefault()
+
+    const newComment = {
+      comment,
+      rating: +rating,
+      profileId: +profile?.id,
+      userId: +user?.id,
+    }
+    await dispatch(makeComment(newComment))
+    setComment('')
+  }
+
   return (
-    <div>
-      {comments?.length > 0 &&
-        comments.map(comment => (
-          <p key={comment.id}>{comment.comment}</p>
-        ))
+    <>
+      <div>
+        {comments?.length > 0 &&
+          comments.map(comment => (
+            <p key={comment.id}>{comment.comment}</p>
+          ))
+        }
+      </div>
+      {user &&
+        <form onSubmit={onSubmit}>
+          <input
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            placeholder="Leave a comment..."
+          />
+          <select
+            value={rating}
+            onChange={(e) => setRating(e.target.value)}
+          >
+            <option value='1'>1</option>
+            <option value='2'>2</option>
+            <option value='3'>3</option>
+            <option value='4'>4</option>
+            <option value='5'>5</option>
+          </select>
+          <button>Submit</button>
+        </form>
       }
-    </div>
+    </>
   )
 
 }
