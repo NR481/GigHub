@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { updateComment } from "../../store/comments"
+import { removeComment, updateComment } from "../../store/comments"
 
 const EditCommentForm = ({ id, user, profile, editComment, editRating, setModal }) => {
   const dispatch = useDispatch()
@@ -19,10 +19,14 @@ const EditCommentForm = ({ id, user, profile, editComment, editRating, setModal 
     setModal(false)
   }
 
+  const handleDelete = async (e) => {
+    e.preventDefault()
+    await dispatch(removeComment(id))
+  }
+
   return (
     <>
-
-      <form onSubmit={onSubmit}>
+     <form onSubmit={onSubmit}>
         <input
           value={comment}
           onChange={(e) => setComment(e.target.value)}
@@ -39,8 +43,8 @@ const EditCommentForm = ({ id, user, profile, editComment, editRating, setModal 
           <option value='5'>5</option>
         </select>
         <button>Submit</button>
+        <button onClick={handleDelete}>Delete</button>
       </form>
-
     </>
   )
 }

@@ -1,6 +1,7 @@
 const GET_COMMENTS = 'comments/GET_COMMENTS'
 const ADD_COMMENT = 'comments/ADD_COMMENT'
 const EDIT_COMMENT = 'comments/EDIT_COMMENT'
+const DELETE_COMMENT = 'comments/DELETE_COMMENT'
 
 const getProfileComments = (comments) => ({
   type: GET_COMMENTS,
@@ -15,6 +16,11 @@ const addComment = (comment) => ({
 const editComment = (comment) => ({
   type: EDIT_COMMENT,
   comment
+})
+
+const deleteComment = (id) => ({
+  type: DELETE_COMMENT,
+  id
 })
 
 export const profileComments = (id) => async (dispatch) => {
@@ -46,6 +52,14 @@ export const updateComment = (comment, id) => async (dispatch) => {
   return data
 }
 
+export const removeComment = (id) => async (dispatch) => {
+  const response = await fetch(`/api/comments/${id}/`, {
+    method: 'DELETE'
+  })
+  if (response.ok) dispatch(deleteComment(id))
+  return;
+}
+
 const commentsReducer = (state = {}, action) => {
   let newState
   switch (action.type) {
@@ -63,6 +77,10 @@ const commentsReducer = (state = {}, action) => {
     case EDIT_COMMENT:
       newState = { ...state }
       newState[action.comment.id] = action.comment
+      return newState
+    case DELETE_COMMENT:
+      newState = { ...state }
+      delete newState[action.id]
       return newState
     default:
       return state

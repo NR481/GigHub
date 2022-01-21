@@ -42,3 +42,11 @@ def edit_comment(id):
     print(edited_comment.to_dict())
     return edited_comment.to_dict()
   return form.errors
+
+@comment_routes.route('/<int:id>/', methods=['DELETE'])
+@login_required
+def delete_comment(id):
+  comment = Comment.query.get(id)
+  db.session.delete(comment)
+  db.session.commit()
+  return {"Delete": "Success"}
