@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
 import { getFeaturedProfiles } from "../../store/profiles"
 import BookingSideBar from "../BookingSideBar"
+import Comments from "../Comments"
 import EditProfileModal from "../EditProfile/EditProfileModal"
 
 const ProfilePage = () => {
@@ -31,6 +32,7 @@ const ProfilePage = () => {
         <h2>{profile?.name}</h2>
         <p>{profile?.description}</p>
         <h2>See what all the buzz is about...</h2>
+        <Comments profile={profile} />
       </div>
       <button onClick={onClick}>Book This Artist</button>
       {showForm &&
