@@ -2,9 +2,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import LoginFormModal from './auth/LoginFormModal';
-import LogoutButton from './auth/LogoutButton';
-import SignupFormModal from './auth/SignupFormModal';
+import LoginFormModal from '../auth/LoginFormModal';
+import LogoutButton from '../auth/LogoutButton';
+import SignupFormModal from '../auth/SignupFormModal';
 
 const NavBar = () => {
   const user = useSelector(state => state.session.user)

@@ -18,9 +18,13 @@ dl, dt, dd, ol, ul, li, fieldset, form, label, legend {
 	outline: 0;
 	}
 body {
+	display: flex;
+	flex-direction: column;
 	background: white;
 	line-height: 1;
 	color: black;
+	width: 1200px;
+	margin: 0 auto;
 	}
 ol, ul {
 	list-style: none;
