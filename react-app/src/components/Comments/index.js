@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { makeComment, profileComments } from "../../store/comments"
+import { getAllUsers } from "../../store/session"
 
 const Comments = ({ profile, user }) => {
   const dispatch = useDispatch()
   const commentsObj = useSelector(state => state.comments)
+  const users = useSelector(state => state.session.users)
 
   const [comment, setComment] = useState('')
   const [rating, setRating] = useState(5)
@@ -12,6 +14,10 @@ const Comments = ({ profile, user }) => {
   useEffect(() => {
     dispatch(profileComments(profile?.id))
   }, [dispatch, profile?.id])
+
+  useEffect(() => {
+    dispatch(getAllUsers())
+  }, [dispatch])
 
   let comments
   if (commentsObj) {
@@ -36,7 +42,10 @@ const Comments = ({ profile, user }) => {
       <div>
         {comments?.length > 0 &&
           comments.map(comment => (
-            <p key={comment.id}>{comment.comment}</p>
+            <div>
+              <p>{users[comment.userId]?.firstName} {users[comment.userId]?.lastName}</p>
+              <p key={comment.id}>{comment.comment}</p>
+            </div>
           ))
         }
       </div>
