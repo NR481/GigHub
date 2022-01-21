@@ -19,7 +19,7 @@ const Comments = ({ profile }) => {
     <div>
       {comments?.length > 0 &&
         comments.map(comment => (
-          <p>{comment.comment}</p>
+          <p key={comment.id}>{comment.comment}</p>
         ))
       }
     </div>
