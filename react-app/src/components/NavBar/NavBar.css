@@ -3,6 +3,7 @@ nav {
   display: flex;
   justify-content: flex-end;
   margin: 20px 0;
+  font-family: "Libre Baskerville", serif;
 }
 
 .title {
@@ -11,7 +12,7 @@ nav {
   text-decoration: none;
   color: #FC5647;
   font-family: "Courgette", cursive;
-  font-size: 30px;
+  font-size: 35px;
 }
 
 .title:visited {
@@ -24,5 +25,13 @@ nav {
 }
 
 .nav-links > li {
-  margin: 0 5px;
+  margin: 0 10px;
+}
+
+.nav-buttons {
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 15px;
+  cursor: pointer;
 }

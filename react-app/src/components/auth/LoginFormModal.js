@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Modal } from '../context/Modal'
 import LoginForm from './LoginForm'
+import '../NavBar/NavBar.css'
 
 const LoginFormModal = () => {
   const [modal, setModal] = useState(false)
@@ -9,6 +10,7 @@ const LoginFormModal = () => {
     <div>
       <button
         onClick={() => setModal(true)}
+        className="nav-buttons"
       >
         Login
       </button>
