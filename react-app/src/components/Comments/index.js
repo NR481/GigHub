@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { makeComment, profileComments } from "../../store/comments"
 import { getAllUsers } from "../../store/session"
+import CommentFormModal from "../EditComments/EditCommentsModal"
 
 const Comments = ({ profile, user }) => {
   const dispatch = useDispatch()
@@ -45,6 +46,17 @@ const Comments = ({ profile, user }) => {
             <div>
               <p>{users[comment.userId]?.firstName} {users[comment.userId]?.lastName}</p>
               <p key={comment.id}>{comment.comment}</p>
+              <div>
+                {user?.id === comment?.userId &&
+                  <CommentFormModal
+                    user={user}
+                    profile={profile}
+                    id={comment?.id}
+                    editComment={comment?.comment}
+                    editRating={comment?.rating}
+                  />
+                }
+              </div>
             </div>
           ))
         }
