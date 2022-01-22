@@ -13,8 +13,7 @@ const SearchPage = () => {
       <h2 className="search-title">Search Results</h2>
       {results?.length === 0 &&
         <div className="error-container">
-          <h2 className="error-msg">Sorry, We Couldn't Find Any Items Matching Your Description</h2>
-          <img src="https://us.123rf.com/450wm/arcady31/arcady311705/arcady31170500048/77956942-sorry-vector-sign.jpg?ver=6" alt="sorry emoji" className="error-img" />
+          <h2 className="error-msg">Sorry, We Couldn't Find Any Profiles Matching Your Description</h2>
         </div>
       }
       <div className="results-container">

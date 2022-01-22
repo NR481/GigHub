@@ -5,6 +5,7 @@ import { getFeaturedProfiles } from "../../store/profiles"
 import BookingSideBar from "../BookingSideBar"
 import Comments from "../Comments"
 import EditProfileModal from "../EditProfile/EditProfileModal"
+import './ProfilePage.css'
 
 const ProfilePage = () => {
   const profileObj = useSelector(state => state.profiles)
@@ -27,13 +28,15 @@ const ProfilePage = () => {
 
   return (
     <>
-      <div>
-        <img src={profile?.imageUrl} alt="artist pic" />
-        <h2>{profile?.name}</h2>
-        <p>{profile?.description}</p>
-        <h2>See what all the buzz is about...</h2>
-        <Comments profile={profile} user={user} />
+      <div className="profile-page-container">
+        <img src={profile?.imageUrl} alt="artist pic" className="profile-page-img"/>
+        <div className="profile-page-info">
+          <h2>{profile?.name}</h2>
+          <p>{profile?.description}</p>
+        </div>
       </div>
+      <h2>See what all the buzz is about...</h2>
+      <Comments profile={profile} user={user} />
       <button onClick={onClick}>Book This Artist</button>
       {showForm &&
         <BookingSideBar />

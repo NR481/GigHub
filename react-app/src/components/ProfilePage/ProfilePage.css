@@ -1,0 +1,28 @@
+.profile-page-container {
+  display: flex;
+}
+
+.profile-page-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 600px;
+  margin: 0 auto;
+  font-family: "Libre Baskerville", serif;
+  line-height: 1.5;
+}
+
+.profile-page-img {
+  max-width: 500px;
+  max-height: 500px;
+  object-fit: cover;
+  margin: 30px 70px 0 0;
+  border-radius: 5px;
+}
+
+.profile-page-info > h2 {
+  font-family: "Courgette", cursive;
+  color: #FC5647;
+  font-size: 30px;
+}
