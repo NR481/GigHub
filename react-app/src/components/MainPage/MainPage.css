@@ -39,6 +39,21 @@
   text-indent: 30px;
 }
 
+.search-container > button {
+  position: absolute;
+  top: 220px;
+  left: 400px;
+  height: 42px;
+  width: 100px;
+  border: none;
+  background-color: #FC5647;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-family: inherit;
+  color: white;
+  font-size: 18px;
+}
+
 .featured-artists {
   display: flex;
   flex-wrap: nowrap;

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useHistory } from "react-router-dom"
 import { getFeaturedProfiles, addProfile } from "../../store/profiles"
+import { searchResults } from "../../store/search"
 import './MainPage.css'
 
 const MainPage = () => {
@@ -15,6 +16,7 @@ const MainPage = () => {
   const [imageUrl, setImageUrl] = useState('')
   const [category, setCategory] = useState('')
   const [location, setLocation] = useState('')
+  const [query, setQuery] = useState('')
 
   useEffect(() => {
     dispatch(getFeaturedProfiles())
@@ -40,6 +42,13 @@ const MainPage = () => {
       .then((res) => history.push(`/profiles/${res.id}`))
   }
 
+  const submitSearch = async (e) => {
+    e.preventDefault()
+    const input = { query }
+    await dispatch(searchResults(input))
+    setQuery('')
+    history.push('/search')
+  }
 
   return (
     <div>
@@ -50,7 +59,13 @@ const MainPage = () => {
           className='splash-img'
         />
         <h2 className="banner">Your hub for local artists</h2>
-        <input placeholder="Search artists..." className="search-bar"/>
+        <input
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search artists..."
+          className="search-bar"
+        />
+        <button onClick={submitSearch}>Search</button>
       </div>
       <h2 className="text-style">Featured Artists</h2>
       <div className="featured-artists">

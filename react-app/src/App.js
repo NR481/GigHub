@@ -6,6 +6,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import { authenticate } from './store/session';
 import MainPage from './components/MainPage';
 import ProfilePage from './components/ProfilePage';
+import SearchPage from './components/SearchResults';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -31,6 +32,9 @@ function App() {
         </Route>
         <Route path='/profiles/:id' exact={true}>
           <ProfilePage />
+        </Route>
+        <Route path='/search' exact={true}>
+          <SearchPage />
         </Route>
         {/* <Route path='/login' exact={true}>
           <LoginForm />
