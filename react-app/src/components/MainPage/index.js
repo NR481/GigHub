@@ -48,54 +48,64 @@ const MainPage = () => {
         alt='music'
         className='splash-img'
       />
-      <h2>Featured Artists</h2>
+      <h2 className="text-style">Featured Artists</h2>
       <div className="featured-artists">
         {featuredProfiles?.length > 0 &&
           featuredProfiles?.map(profile => (
-            <Link to={`/profiles/${profile.id}`} key={profile.id}>
-              <img
-                src={profile.imageUrl}
-                alt='artist headshots'
-                className="profile-img"
-              />
-            </Link>
+            <div className="single-profile">
+              <Link to={`/profiles/${profile.id}`} key={profile.id} className="feature-links">
+                <div className="profile-info">
+                  <p>{profile.name}</p>
+                  <p>{`★ ${profile.rating}`}</p>
+                </div>
+                <img
+                  src={profile.imageUrl}
+                  alt='artist headshots'
+                  className="profile-img"
+                />
+              </Link>
+            </div>
           )
-        )}
+          )}
       </div>
-      <h2>Create an artist profile and start getting booked!</h2>
-      <form onSubmit={submitNewProfile}>
-        <input
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Name"
-          required
-        />
-        <input
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          placeholder="Description of services"
-          required
-        />
-        <input
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
-          placeholder="Image URL"
-          required
-        />
-        <input
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          placeholder="Musical Genre"
-          required
-        />
-        <input
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-          placeholder="Location"
-          required
-        />
-        <button>Create Profile</button>
-      </form>
+      <div className="profile-form-container">
+        <div className="profile-form">
+          <h2 className="text-style">Create an artist profile and start getting booked!</h2>
+          <form onSubmit={submitNewProfile}>
+            <input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Name"
+              required
+            />
+            <input
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Description of services"
+              required
+            />
+            <input
+              value={imageUrl}
+              onChange={(e) => setImageUrl(e.target.value)}
+              placeholder="Image URL"
+              required
+            />
+            <input
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              placeholder="Musical Genre"
+              required
+            />
+            <input
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+              placeholder="Location"
+              required
+            />
+            <button>Create Profile</button>
+          </form>
+        </div>
+      </div>
     </div>
   )
 }
