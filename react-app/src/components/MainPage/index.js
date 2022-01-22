@@ -43,11 +43,15 @@ const MainPage = () => {
 
   return (
     <div>
-      <img
-        src='https://images.unsplash.com/photo-1573006939324-641d31296356?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-        alt='music'
-        className='splash-img'
-      />
+      <div className="search-container">
+        <img
+          src='https://images.unsplash.com/photo-1573006939324-641d31296356?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
+          alt='music'
+          className='splash-img'
+        />
+        <h2 className="banner">Your hub for local artists</h2>
+        <input placeholder="Search artists..." className="search-bar"/>
+      </div>
       <h2 className="text-style">Featured Artists</h2>
       <div className="featured-artists">
         {featuredProfiles?.length > 0 &&
@@ -108,7 +112,7 @@ const MainPage = () => {
                 placeholder="Location"
                 required
               />
-              <button>Create Profile</button>
+              <button className="profile-button">Create Profile</button>
             </div>
           </form>
         </div>

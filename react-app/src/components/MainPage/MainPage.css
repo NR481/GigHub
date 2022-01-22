@@ -16,6 +16,29 @@
   border-bottom-left-radius: 5px;
 }
 
+.search-container {
+  position: relative;
+}
+
+.banner {
+  position: absolute;
+  top: 160px;
+  left: 100px;
+  color: white;
+  font-size: 45px;
+}
+
+.search-bar {
+  position: absolute;
+  top: 220px;
+  left: 100px;
+  height: 40px;
+  width: 300px;
+  border: none;
+  border-radius: 5px;
+  text-indent: 30px;
+}
+
 .featured-artists {
   display: flex;
   flex-wrap: nowrap;
@@ -99,8 +122,27 @@
 .col-a, .col-b {
   display: flex;
   flex-direction: column;
+  margin: 10px;
 }
 
-.profile-inputs > input {
-  margin: 5px;
+.col-a > input, .col-b > input {
+  margin: 10px;
+  width: 250px;
+  height: 30px;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  text-indent: 10px;
+}
+
+.profile-button {
+  width: 260px;
+  height: 33px;
+  margin: 10px auto;
+  background-color: white;
+  font-family: inherit;
+  color: #065c62;
+  font-size: 15px;
+  border: none;
+  font-weight: bold;
+  border-radius: 5px;
 }
