@@ -70,39 +70,46 @@ const MainPage = () => {
       </div>
       <div className="profile-form-container">
         <div className="profile-form">
-          <h2 className="text-style">Create an artist profile and start getting booked!</h2>
-          <form onSubmit={submitNewProfile}>
-            <input
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Name"
-              required
-            />
-            <input
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="Description of services"
-              required
-            />
-            <input
-              value={imageUrl}
-              onChange={(e) => setImageUrl(e.target.value)}
-              placeholder="Image URL"
-              required
-            />
-            <input
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              placeholder="Musical Genre"
-              required
-            />
-            <input
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-              placeholder="Location"
-              required
-            />
-            <button>Create Profile</button>
+          <h2 className="form-text">
+            Create an artist profile and
+            <span className="emphasis"> start getting booked!</span>
+          </h2>
+          <form onSubmit={submitNewProfile} className="profile-inputs">
+            <div className="col-a">
+              <input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Name"
+                required
+              />
+              <input
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="Description of services"
+                required
+              />
+              <input
+                value={imageUrl}
+                onChange={(e) => setImageUrl(e.target.value)}
+                placeholder="Image URL"
+                required
+              />
+            </div>
+            <div className="col-b">
+              <input
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                placeholder="Musical Genre"
+                required
+              />
+              <input
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+                placeholder="Location"
+                required
+              />
+              <button>Create Profile</button>
+            </div>
           </form>
         </div>
       </div>
