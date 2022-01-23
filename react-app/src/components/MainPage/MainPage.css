@@ -108,11 +108,12 @@
 
 .profile-form-container {
   background-color: #065c62;
-  width: 250%;
+  width: 179%;
   margin-left: -450px;
 }
 
 .profile-form {
+  position: relative;
   display: flex;
   align-items: center;
   height: 300px;
@@ -165,6 +166,14 @@
 .not-loggedin {
   margin-left: 800px;
   padding-top: 40px;
+  color: white;
+  font-family: "Libre Baskerville", serif;
+}
+
+.create-profile-errors {
+  position: absolute;
+  top: 20px;
+  left: 500px;
   color: white;
   font-family: "Libre Baskerville", serif;
 }

@@ -17,6 +17,7 @@ const MainPage = () => {
   const [category, setCategory] = useState('')
   const [location, setLocation] = useState('')
   const [query, setQuery] = useState('')
+  const [errors, setErrors] = useState([])
 
   useEffect(() => {
     dispatch(getFeaturedProfiles())
@@ -29,17 +30,30 @@ const MainPage = () => {
 
   const submitNewProfile = async (e) => {
     e.preventDefault()
-    const newProfile = {
-      name,
-      description,
-      imageUrl,
-      category,
-      location,
-      userId: +user?.id
+
+    const validationErrors = []
+    const imgRegex = /(http(s?):)|([/|.|\w|\s])*\.(?:jpg|gif|png)/
+    if (!user) validationErrors.push('Please Log in or Sign up to create a profile')
+    // if (name.length === 0) validationErrors.push('Please enter a name')
+    if (!imgRegex.test(imageUrl)) validationErrors.push('Please enter a valid Image URL')
+    // if (description.length === 0) validationErrors.push('Please enter a description of your services')
+    // if (category.length === 0) validationErrors.push('Please enter the musical genre(s) you specialize in')
+    // if (location.length === 0) validationErrors.push('Please enter your location')
+    setErrors(validationErrors)
+
+    if (validationErrors.length === 0) {
+      const newProfile = {
+        name,
+        description,
+        imageUrl,
+        category,
+        location,
+        userId: +user?.id
+      }
+      await dispatch(addProfile(newProfile))
+        .then((res) => history.push(`/profiles/${res.id}`))
     }
-    await dispatch(addProfile(newProfile))
-      .then((res) => history.push(`/profiles/${res.id}`))
-    }
+  }
 
 
   const submitSearch = async (e) => {
@@ -90,6 +104,13 @@ const MainPage = () => {
       </div>
       <div className="profile-form-container">
         <div className="profile-form">
+          <div className="create-profile-errors">
+            {errors.length > 0 &&
+              errors.map(error => (
+                <p key={error}>{error}</p>
+              ))
+            }
+          </div>
           <h2 className="form-text">
             Create an artist profile and
             <span className="emphasis"> start getting booked!</span>
