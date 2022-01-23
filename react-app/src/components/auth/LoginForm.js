@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import './LoginForm.css'
 
 const LoginForm = ({ setModal }) => {
   const [errors, setErrors] = useState([]);
@@ -14,7 +15,7 @@ const LoginForm = ({ setModal }) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
-      setErrors(data);
+      setErrors(["That combination doesn't match our records."]);
     }
     if (!data) setModal(false)
   };
@@ -32,8 +33,8 @@ const LoginForm = ({ setModal }) => {
   }
 
   return (
-    <form onSubmit={onLogin}>
-      <div>
+    <form onSubmit={onLogin} className='login-form'>
+      <div className='login-form-errors'>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
@@ -43,9 +44,9 @@ const LoginForm = ({ setModal }) => {
         <input
           name='email'
           type='text'
-          placeholder='Email'
           value={email}
           onChange={updateEmail}
+          required
         />
       </div>
       <div>
@@ -53,9 +54,9 @@ const LoginForm = ({ setModal }) => {
         <input
           name='password'
           type='password'
-          placeholder='Password'
           value={password}
           onChange={updatePassword}
+          required
         />
         <button type='submit'>Login</button>
       </div>

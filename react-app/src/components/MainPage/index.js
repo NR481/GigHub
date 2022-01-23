@@ -34,11 +34,7 @@ const MainPage = () => {
     const validationErrors = []
     const imgRegex = /(http(s?):)|([/|.|\w|\s])*\.(?:jpg|gif|png)/
     if (!user) validationErrors.push('Please Log in or Sign up to create a profile')
-    // if (name.length === 0) validationErrors.push('Please enter a name')
     if (!imgRegex.test(imageUrl)) validationErrors.push('Please enter a valid Image URL')
-    // if (description.length === 0) validationErrors.push('Please enter a description of your services')
-    // if (category.length === 0) validationErrors.push('Please enter the musical genre(s) you specialize in')
-    // if (location.length === 0) validationErrors.push('Please enter your location')
     setErrors(validationErrors)
 
     if (validationErrors.length === 0) {
