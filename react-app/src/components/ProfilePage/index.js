@@ -37,9 +37,7 @@ const ProfilePage = () => {
           <p>{profile?.description}</p>
         </div>
       </div>
-      {showForm &&
-        <BookingSideBar showForm={showForm}/>
-      }
+      <BookingSideBar showForm={showForm}/>
       <div className="comments-container">
         <h2>See what all the buzz is about...</h2>
         <Comments profile={profile} user={user} />

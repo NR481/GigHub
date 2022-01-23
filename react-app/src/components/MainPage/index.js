@@ -29,7 +29,6 @@ const MainPage = () => {
 
   const submitNewProfile = async (e) => {
     e.preventDefault()
-
     const newProfile = {
       name,
       description,
@@ -40,10 +39,12 @@ const MainPage = () => {
     }
     await dispatch(addProfile(newProfile))
       .then((res) => history.push(`/profiles/${res.id}`))
-  }
+    }
+
 
   const submitSearch = async (e) => {
     e.preventDefault()
+
     const input = { query }
     await dispatch(searchResults(input))
     setQuery('')
