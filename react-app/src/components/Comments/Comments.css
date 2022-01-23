@@ -1,0 +1,71 @@
+.comments-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.single-comment {
+  padding: 20px;
+  position: relative;
+  height: fit-content;
+  line-height: 1.5;
+  font-family: "Libre Baskerville", serif;
+}
+
+.single-comment > p {
+  margin: 15px;
+}
+
+.border-bottom {
+  border-bottom: 1px solid lightgray;
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  margin-top: 15px;
+}
+
+.user-name {
+  font-weight: bolder;
+}
+
+.comment {
+  font-size: 15px;
+}
+
+.comment-edit-button {
+  margin-left: 400px;
+  width: 100px;
+  background-color: #FC5647;
+  border: none;
+  height: 30px;
+  color: white;
+  font-family: inherit;
+  border-radius: 5px;
+}
+
+.comment-form {
+  font-family: "Libre Baskerville", serif;
+}
+
+.comment-form > input {
+  width: 300px;
+  height: 30px;
+  text-indent: 20px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  margin-right: 20px;
+}
+
+.comment-form > button {
+  background-color: #FC5647;
+  border: none;
+  height: 30px;
+  width: 100px;
+  color: white;
+  font-family: inherit;
+  border-radius: 5px;
+  margin-left: 20px;
+}
+
+.ratings {
+  color: #FC5647;
+}

@@ -17,11 +17,42 @@
   max-width: 500px;
   max-height: 500px;
   object-fit: cover;
-  margin: 30px 70px 0 0;
+  margin: 30px 70px 20px auto;
+  border-radius: 5px;
+}
+
+.image-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.image-btn > button {
+  margin-left: -55px;
+  width: 150px;
+  background-color: #FC5647;
+  border: none;
+  height: 30px;
+  color: white;
+  font-family: inherit;
   border-radius: 5px;
 }
 
 .profile-page-info > h2 {
+  font-family: "Courgette", cursive;
+  color: #FC5647;
+  font-size: 30px;
+}
+
+.comments-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px;
+}
+
+.comments-container > h2 {
   font-family: "Courgette", cursive;
   color: #FC5647;
   font-size: 30px;

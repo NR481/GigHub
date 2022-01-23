@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Modal } from '../context/Modal'
 import EditCommentForm from './index'
+import '../Comments/Comments.css'
 
 const CommentFormModal = ({ id, user, profile, editComment, editRating }) => {
   const [modal, setModal] = useState(false)
@@ -9,6 +10,7 @@ const CommentFormModal = ({ id, user, profile, editComment, editRating }) => {
     <div>
       <button
         onClick={() => setModal(true)}
+        className="comment-edit-button"
       >
         Edit
       </button>

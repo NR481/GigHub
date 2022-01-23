@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { makeComment, profileComments } from "../../store/comments"
 import { getAllUsers } from "../../store/session"
 import CommentFormModal from "../EditComments/EditCommentsModal"
+import './Comments.css'
 
 const Comments = ({ profile, user }) => {
   const dispatch = useDispatch()
@@ -40,12 +41,12 @@ const Comments = ({ profile, user }) => {
 
   return (
     <>
-      <div>
+      <div className="comments-container">
         {comments?.length > 0 &&
           comments.map(comment => (
-            <div>
-              <p>{users[comment.userId]?.firstName} {users[comment.userId]?.lastName}</p>
-              <p key={comment.id}>{comment.comment}</p>
+            <div key={comment.id} className="single-comment">
+              <p className="user-name">{users[comment.userId]?.firstName} {users[comment.userId]?.lastName}</p>
+              <p className="comment">{comment.comment}</p>
               <div>
                 {user?.id === comment?.userId &&
                   <CommentFormModal
@@ -57,26 +58,29 @@ const Comments = ({ profile, user }) => {
                   />
                 }
               </div>
+              <div className="border-bottom"></div>
             </div>
           ))
         }
       </div>
       {user &&
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} className="comment-form">
           <input
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             placeholder="Leave a comment..."
           />
+          <label>Rating: </label>
           <select
             value={rating}
             onChange={(e) => setRating(e.target.value)}
+            className="ratings"
           >
-            <option value='1'>1</option>
-            <option value='2'>2</option>
-            <option value='3'>3</option>
-            <option value='4'>4</option>
-            <option value='5'>5</option>
+            <option value='1'>★</option>
+            <option value='2'>★★</option>
+            <option value='3'>★★★</option>
+            <option value='4'>★★★★</option>
+            <option value='5'>★★★★★</option>
           </select>
           <button>Submit</button>
         </form>

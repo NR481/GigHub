@@ -11,7 +11,7 @@ const EditCommentForm = ({ id, user, profile, editComment, editRating, setModal 
     e.preventDefault()
     const editedComment = {
       comment,
-      rating,
+      rating: +rating,
       profileId: +profile?.id,
       userId: +user?.id
     }
