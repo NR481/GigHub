@@ -1,0 +1,17 @@
+.side-bar {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 70px;
+  right: 0;
+  background-color: #003359;
+  color: white;
+  height: 700px;
+  opacity: 0.9;
+  transform: translateX(-100%);
+  -webkit-transition: all 0.25s ease-in-out;
+}
+
+.side-bar.active {
+  transform: translateX(0);
+}

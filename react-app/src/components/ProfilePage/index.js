@@ -19,15 +19,14 @@ const ProfilePage = () => {
     dispatch(getFeaturedProfiles())
   }, [dispatch])
 
-  const onClick = (e) => {
-    e.preventDefault()
-    setShowForm(!showForm)
+  const onClick = () => {
+    setShowForm((prevState) => !prevState)
   }
 
   const profile = profileObj[id]
 
   return (
-    <>
+    <div className="profile-page">
       <div className="profile-page-container">
         <div className="image-btn">
           <img src={profile?.imageUrl} alt="artist pic" className="profile-page-img"/>
@@ -38,17 +37,17 @@ const ProfilePage = () => {
           <p>{profile?.description}</p>
         </div>
       </div>
+      {showForm &&
+        <BookingSideBar showForm={showForm}/>
+      }
       <div className="comments-container">
         <h2>See what all the buzz is about...</h2>
         <Comments profile={profile} user={user} />
-        {showForm &&
-          <BookingSideBar />
-        }
         {user?.id === profile?.userId &&
           <EditProfileModal id={profile?.id} editName={profile?.name} editDescription={profile?.description} editImageUrl={profile?.imageUrl} editCategory={profile?.category} editLocation={profile?.location} userId={user?.id} />
         }
       </div>
-    </>
+    </div>
   )
 }
 

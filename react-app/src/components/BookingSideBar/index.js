@@ -1,6 +1,8 @@
-const BookingSideBar = () => {
+import './BookingSideBar.css'
+
+const BookingSideBar = ({ showForm }) => {
   return (
-    <div>
+    <div className={showForm ? "side-bar active" : "side-bar"}>
       <form>
         <div>
           <label>Date of Event</label>
