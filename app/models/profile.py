@@ -8,7 +8,7 @@ class Profile(db.Model):
   description = db.Column(db.String, nullable=False)
   imageUrl = db.Column(db.String, nullable=False)
   soundUrl = db.Column(db.String)
-  rating = db.Column(db.Integer)
+  rating = db.Column(db.Numeric(precision=2, scale=1, asdecimal=False))
   category = db.Column(db.String(50), nullable=False)
   location = db.Column(db.String(50), nullable=False)
   userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
