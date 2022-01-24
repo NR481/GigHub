@@ -46,6 +46,7 @@ const Comments = ({ profile, user }) => {
           comments.map(comment => (
             <div key={comment.id} className="single-comment">
               <p className="user-name">{users[comment.userId]?.firstName} {users[comment.userId]?.lastName}</p>
+              <p className="ratings">{comment.rating === 5? "★★★★★" : comment.rating === 4? "★★★★" : comment.rating === 3? "★★★" : comment.rating === 2? "★★" : "★"}</p>
               <p className="comment">{comment.comment}</p>
               <div>
                 {user?.id === comment?.userId &&

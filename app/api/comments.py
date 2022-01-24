@@ -2,7 +2,6 @@ from crypt import methods
 from flask import Blueprint, request
 from app.models import db, Comment
 from flask_login import login_required, current_user
-
 from app.models.profile import Profile
 from ..forms import NewCommentForm
 
