@@ -23,10 +23,12 @@ const MainPage = () => {
     dispatch(getFeaturedProfiles())
   }, [dispatch])
 
-  let featuredProfiles
+  let profiles
   if (profilesObj) {
-    featuredProfiles = Object.values(profilesObj)
+    profiles = Object.values(profilesObj)
   }
+
+  const featuredProfiles = profiles?.sort((a, b) => b.rating - a.rating)
 
   const submitNewProfile = async (e) => {
     e.preventDefault()
@@ -86,7 +88,9 @@ const MainPage = () => {
               <Link to={`/profiles/${profile.id}`} key={profile.id} className="feature-links">
                 <div className="profile-info">
                   <p>{profile.name}</p>
-                  <p>{`★ ${profile.rating}`}</p>
+                  {profile.rating > 0 &&
+                    <p>{`★ ${profile.rating}`}</p>
+                  }
                 </div>
                 <img
                   src={profile.imageUrl}

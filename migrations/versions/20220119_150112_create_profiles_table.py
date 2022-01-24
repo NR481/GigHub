@@ -24,7 +24,7 @@ def upgrade():
     sa.Column('description', sa.String(), nullable=False),
     sa.Column('imageUrl', sa.String(), nullable=False),
     sa.Column('soundUrl', sa.String(), nullable=True),
-    sa.Column('rating', sa.Integer(), nullable=True),
+    sa.Column('rating', sa.Numeric(precision=2, scale=1, asdecimal=False), nullable=True),
     sa.Column('category', sa.String(length=50), nullable=False),
     sa.Column('location', sa.String(length=50), nullable=False),
     sa.Column('userId', sa.Integer(), nullable=False),
