@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import './SignupForm.css'
 
 const SignUpForm = ({ setModal }) => {
   const [errors, setErrors] = useState([]);
@@ -16,13 +17,22 @@ const SignUpForm = ({ setModal }) => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
+
+    const validationErrors = []
+    const regex = /^\S+@\S+\.\S+$/;
+    if (!regex.test(email)) validationErrors.push('Please enter a valid email')
+    if (password !== repeatPassword) validationErrors.push('Password and Repeat Password inputs must match')
+    if (validationErrors.length === 0) {
       const data = await dispatch(signUp(username, firstName, lastName, email, password));
+
       if (data) {
-        setErrors(data)
+        data.forEach(item => {
+          const message = item.split(' : ')[1]
+          validationErrors.push(message)
+        })
       }
     }
-    setModal(false)
+    setErrors(validationErrors)
   };
 
   const updateUsername = (e) => {
@@ -54,8 +64,8 @@ const SignUpForm = ({ setModal }) => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
-      <div>
+    <form onSubmit={onSignUp} className='signup-form'>
+      <div className='signup-form-errors'>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
@@ -65,6 +75,7 @@ const SignUpForm = ({ setModal }) => {
         <input
           value={firstName}
           onChange={updateFirstName}
+          required
         />
       </div>
       <div>
@@ -72,6 +83,7 @@ const SignUpForm = ({ setModal }) => {
         <input
           value={lastName}
           onChange={updateLastName}
+          required
         />
       </div>
       <div>
@@ -81,6 +93,7 @@ const SignUpForm = ({ setModal }) => {
           name='username'
           onChange={updateUsername}
           value={username}
+          required
         ></input>
       </div>
       <div>
@@ -90,6 +103,7 @@ const SignUpForm = ({ setModal }) => {
           name='email'
           onChange={updateEmail}
           value={email}
+          required
         ></input>
       </div>
       <div>
@@ -99,6 +113,7 @@ const SignUpForm = ({ setModal }) => {
           name='password'
           onChange={updatePassword}
           value={password}
+          required
         ></input>
       </div>
       <div>

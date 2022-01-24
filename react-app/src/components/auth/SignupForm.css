@@ -1,0 +1,41 @@
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 600px;
+  width: 400px;
+  font-family: "Libre Baskerville", serif;
+}
+
+.signup-form > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-form > div > label {
+  margin: 10px 0;
+}
+
+.signup-form > button {
+  margin-top: 20px;
+  height: 30px;
+  background-color: #FC5647;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-family: inherit;
+  width: 150px;
+}
+
+.signup-form-errors {
+  position: absolute;
+  left: 80px;
+  top: 30px;
+  color: #FC5647;
+  width: 300px;
+}
+
+.signup-form-errors > div {
+  margin: 5px;
+}
