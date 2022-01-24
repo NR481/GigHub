@@ -8,7 +8,6 @@ const SignUpForm = ({ setModal }) => {
   const [username, setUsername] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
@@ -18,7 +17,7 @@ const SignUpForm = ({ setModal }) => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, firstName, lastName, email, imageUrl, password));
+      const data = await dispatch(signUp(username, firstName, lastName, email, password));
       if (data) {
         setErrors(data)
       }
@@ -48,10 +47,6 @@ const SignUpForm = ({ setModal }) => {
 
   const updateLastName = (e) => {
     setLastName(e.target.value);
-  };
-
-  const updateImageUrl = (e) => {
-    setImageUrl(e.target.value);
   };
 
   if (user) {
@@ -96,13 +91,6 @@ const SignUpForm = ({ setModal }) => {
           onChange={updateEmail}
           value={email}
         ></input>
-      </div>
-      <div>
-        <label>Image URL</label>
-        <input
-          value={imageUrl}
-          onChange={updateImageUrl}
-        />
       </div>
       <div>
         <label>Password</label>

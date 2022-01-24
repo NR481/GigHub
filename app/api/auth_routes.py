@@ -28,7 +28,7 @@ def authenticate():
     return {'errors': ['Unauthorized']}
 
 
-@auth_routes.route('/login', methods=['POST'])
+@auth_routes.route('/login/', methods=['POST'])
 def login():
     """
     Logs a user in
@@ -45,7 +45,7 @@ def login():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@auth_routes.route('/logout')
+@auth_routes.route('/logout/')
 def logout():
     """
     Logs a user out
@@ -67,7 +67,6 @@ def sign_up():
             firstName=form.data['firstName'],
             lastName=form.data['lastName'],
             email=form.data['email'],
-            imageUrl=form.data['imageUrl'],
             password=form.data['password']
         )
         db.session.add(user)
