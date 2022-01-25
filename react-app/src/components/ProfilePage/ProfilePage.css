@@ -39,6 +39,14 @@
   border-radius: 5px;
 }
 
+.profile-rating {
+  margin-top: -70px;
+}
+
+.profile-rating > span {
+  color: #FC5647;
+}
+
 .profile-page-info > h2 {
   font-family: "Courgette", cursive;
   color: #FC5647;

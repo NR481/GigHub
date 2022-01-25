@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { removeComment, updateComment } from "../../store/comments"
-import { getFeaturedProfiles } from "../../store/profiles"
 
 const EditCommentForm = ({ id, user, profile, editComment, editRating, setModal, setProfileRating }) => {
   const dispatch = useDispatch()

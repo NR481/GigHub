@@ -26,8 +26,6 @@ const ProfilePage = () => {
     setShowForm((prevState) => !prevState)
   }
 
-  console.log(profileRating, profile?.rating)
-
   return (
     <div className="profile-page">
       <div className="profile-page-container">
@@ -37,7 +35,9 @@ const ProfilePage = () => {
         </div>
         <div className="profile-page-info">
           <h2>{profile?.name}</h2>
-          <p>{profile?.rating}</p>
+          {profile?.rating > 0 &&
+           <p className="profile-rating"><span>★ </span>{profile?.rating}</p>
+          }
           <p>{profile?.description}</p>
         </div>
       </div>
