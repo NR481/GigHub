@@ -1,0 +1,52 @@
+.edit-profile-container {
+  position: relative;
+  font-family: "Libre Baskerville", serif;
+}
+
+.edit-profile-errors {
+  position: absolute;
+  top: 30px;
+  left: 85px;
+  color: #FC5647;
+  text-align: center;
+}
+
+.edit-profile-errors > p {
+  margin: 5px 0;
+}
+
+.edit-profile-form {
+  display: flex;
+  flex-direction: column;
+  height: 700px;
+  width: 500px;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-profile-form > div {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}
+
+.edit-profile-form > div > input {
+  margin: 10px 0;
+  height: 30px;
+  width: 250px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  text-indent: 10px;
+}
+
+.edit-profile-form > button {
+  width: 200px;
+  background-color: #FC5647;
+  border: none;
+  height: 30px;
+  color: white;
+  font-family: inherit;
+  border-radius: 5px;
+  margin: 10px;
+}

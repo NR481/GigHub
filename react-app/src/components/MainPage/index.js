@@ -140,7 +140,7 @@ const MainPage = () => {
               <input
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                placeholder="Musical Genre"
+                placeholder="Musical Genre(s)"
                 required
               />
               <input
