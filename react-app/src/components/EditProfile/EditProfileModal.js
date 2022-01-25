@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Modal } from '../context/Modal'
 import EditProfileForm from '.'
+import '../ProfilePage/ProfilePage.css'
 
 const EditProfileModal = ({ id, editName, editDescription, editImageUrl, editCategory, editLocation, userId }) => {
   const [modal, setModal] = useState(false)
@@ -9,6 +10,7 @@ const EditProfileModal = ({ id, editName, editDescription, editImageUrl, editCat
     <div>
       <button
         onClick={() => setModal(true)}
+        className="edit-profile-button"
       >
         Edit Profile
       </button>
