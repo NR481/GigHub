@@ -16,7 +16,7 @@ const ProfilePage = () => {
   const profile = profileObj[id]
 
   const [showForm, setShowForm] = useState(false)
-  const [profileRating, setProfileRating] = useState(0)
+  const [profileRating, setProfileRating] = useState(-1)
 
   useEffect(() => {
     dispatch(getFeaturedProfiles())
