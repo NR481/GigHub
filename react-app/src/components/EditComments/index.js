@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { removeComment, updateComment } from "../../store/comments"
+import './EditComments.css'
 
 const EditCommentForm = ({ id, user, profile, editComment, editRating, setModal, setProfileRating }) => {
   const dispatch = useDispatch()
@@ -27,27 +28,32 @@ const EditCommentForm = ({ id, user, profile, editComment, editRating, setModal,
   }
 
   return (
-    <>
-     <form onSubmit={onSubmit}>
+    <div>
+     <form onSubmit={onSubmit} className="edit-comments-form">
+       <div className="edit-comments-inputs">
         <input
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           placeholder="Leave a comment..."
         />
+        <label>Rating: </label>
         <select
           value={rating}
           onChange={(e) => setRating(e.target.value)}
         >
-          <option value='1'>1</option>
-          <option value='2'>2</option>
-          <option value='3'>3</option>
-          <option value='4'>4</option>
-          <option value='5'>5</option>
+          <option value='1'>★</option>
+          <option value='2'>★★</option>
+          <option value='3'>★★★</option>
+          <option value='4'>★★★★</option>
+          <option value='5'>★★★★★</option>
         </select>
-        <button>Submit</button>
-        <button onClick={handleDelete}>Delete</button>
+        </div>
+        <div className="edit-comments-buttons">
+          <button>Submit</button>
+          <button onClick={handleDelete}>Delete</button>
+        </div>
       </form>
-    </>
+    </div>
   )
 }
 
