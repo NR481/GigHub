@@ -84,8 +84,8 @@ const MainPage = () => {
       <div className="featured-artists">
         {featuredProfiles?.length > 0 &&
           featuredProfiles?.map(profile => (
-            <div className="single-profile">
-              <Link to={`/profiles/${profile.id}`} key={profile.id} className="feature-links">
+            <div key={profile.id} className="single-profile">
+              <Link to={`/profiles/${profile.id}`} className="feature-links">
                 <div className="profile-info">
                   <p>{profile.name}</p>
                   {profile.rating > 0 &&

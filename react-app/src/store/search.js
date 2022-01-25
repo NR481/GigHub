@@ -20,7 +20,7 @@ const searchReducer = (state = {}, action) => {
   let newState;
   switch (action.type) {
     case GET_QUERY:
-      newState = {}
+      newState = { ...state }
       action.query.profiles.forEach(profile => {
         newState[profile.id] = profile
       })

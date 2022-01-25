@@ -1,12 +1,11 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import './SearchResults.css'
 
 const SearchPage = () => {
   const resultsObj = useSelector(state => state.search)
 
   const results = Object.values(resultsObj)
-
-
 
   return (
     <>
@@ -19,9 +18,14 @@ const SearchPage = () => {
       <div className="results-container">
         {results?.length > 0 &&
           results.map(result => (
-            <div className="search-listing">
-              <h2 className="search-prod-title">{result.name}</h2>
+            <div key={result.id} className="search-listing">
               <Link to={`/profiles/${result.id}`}><img src={result.imageUrl} className="search-img" alt='artist pic'/></Link>
+              <div className="search-info">
+                <p className="search-prod-title">{result.name}</p>
+                <p>{result.description}</p>
+                <p>{result.category}</p>
+                <p>{result.location}</p>
+              </div>
             </div>
           ))
         }
