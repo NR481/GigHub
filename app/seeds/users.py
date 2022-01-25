@@ -79,7 +79,7 @@ def seed_users():
         username='brian123',
         firstName='Brian',
         lastName='Kidd',
-        email='brian@gigub.com',
+        email='kidd@gigub.com',
         password='password'
     )
 

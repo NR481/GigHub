@@ -31,7 +31,7 @@ const ProfilePage = () => {
       <div className="profile-page-container">
         <div className="image-btn">
           <img src={profile?.imageUrl} alt="artist pic" className="profile-page-img"/>
-          {user?.id !== profile?.userId &&
+          {user?.id && user?.id !== profile?.userId &&
             <button onClick={onClick}>Book This Artist</button>
           }
         </div>
