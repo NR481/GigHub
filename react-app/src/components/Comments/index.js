@@ -36,7 +36,7 @@ const Comments = ({ profile, user, setProfileRating }) => {
       userId: +user?.id,
     }
     await dispatch(makeComment(newComment))
-      .then(() => setProfileRating(profile?.rating))
+      .then(() => setProfileRating(profile.rating))
     setComment('')
   }
 
