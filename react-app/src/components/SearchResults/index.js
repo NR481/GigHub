@@ -8,7 +8,7 @@ const SearchPage = () => {
   const results = Object.values(resultsObj)
 
   return (
-    <>
+    <div className="search-container">
       <h2 className="search-title">Search Results</h2>
       {results?.length === 0 &&
         <div className="error-container">
@@ -22,7 +22,7 @@ const SearchPage = () => {
               <Link to={`/profiles/${result.id}`}><img src={result.imageUrl} className="search-img" alt='artist pic'/></Link>
               <div className="search-info">
                 <p className="search-prod-title">{result.name}</p>
-                <p>{result.description}</p>
+                <p className="search-description">{result.description}</p>
                 <p>{result.category}</p>
                 <p>{result.location}</p>
               </div>
@@ -30,7 +30,7 @@ const SearchPage = () => {
           ))
         }
       </div>
-    </>
+    </div>
   )
 }
 
