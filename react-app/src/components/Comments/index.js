@@ -5,7 +5,7 @@ import { getAllUsers } from "../../store/session"
 import CommentFormModal from "../EditComments/EditCommentsModal"
 import './Comments.css'
 
-const Comments = ({ profile, user }) => {
+const Comments = ({ profile, user, setProfileRating }) => {
   const dispatch = useDispatch()
   const commentsObj = useSelector(state => state.comments)
   const users = useSelector(state => state.session.users)
@@ -36,6 +36,7 @@ const Comments = ({ profile, user }) => {
       userId: +user?.id,
     }
     await dispatch(makeComment(newComment))
+      .then(() => setProfileRating(profile?.rating))
     setComment('')
   }
 
@@ -56,6 +57,7 @@ const Comments = ({ profile, user }) => {
                     id={comment?.id}
                     editComment={comment?.comment}
                     editRating={comment?.rating}
+                    setProfileRating={setProfileRating}
                   />
                 }
               </div>

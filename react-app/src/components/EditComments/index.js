@@ -1,8 +1,9 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { removeComment, updateComment } from "../../store/comments"
+import { getFeaturedProfiles } from "../../store/profiles"
 
-const EditCommentForm = ({ id, user, profile, editComment, editRating, setModal }) => {
+const EditCommentForm = ({ id, user, profile, editComment, editRating, setModal, setProfileRating }) => {
   const dispatch = useDispatch()
   const [comment, setComment] = useState(editComment)
   const [rating, setRating] = useState(editRating)
@@ -16,12 +17,14 @@ const EditCommentForm = ({ id, user, profile, editComment, editRating, setModal 
       userId: +user?.id
     }
     await dispatch(updateComment(editedComment, id))
+      .then(() => setProfileRating(profile?.rating))
     setModal(false)
   }
 
   const handleDelete = async (e) => {
     e.preventDefault()
     await dispatch(removeComment(id))
+      .then(() => setProfileRating(profile?.rating))
   }
 
   return (

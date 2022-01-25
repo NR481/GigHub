@@ -3,7 +3,7 @@ import { Modal } from '../context/Modal'
 import EditCommentForm from './index'
 import '../Comments/Comments.css'
 
-const CommentFormModal = ({ id, user, profile, editComment, editRating }) => {
+const CommentFormModal = ({ id, user, profile, editComment, editRating, setProfileRating }) => {
   const [modal, setModal] = useState(false)
 
   return(
@@ -23,6 +23,7 @@ const CommentFormModal = ({ id, user, profile, editComment, editRating }) => {
             profile={profile}
             editComment={editComment}
             editRating={editRating}
+            setProfileRating={setProfileRating}
           />
         </Modal>
       )}

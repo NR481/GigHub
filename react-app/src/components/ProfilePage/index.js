@@ -13,17 +13,20 @@ const ProfilePage = () => {
   const { id } = useParams()
   const dispatch = useDispatch()
 
+  const profile = profileObj[id]
+
   const [showForm, setShowForm] = useState(false)
+  const [profileRating, setProfileRating] = useState(profile?.rating)
 
   useEffect(() => {
     dispatch(getFeaturedProfiles())
-  }, [dispatch])
+  }, [dispatch, profileRating])
 
   const onClick = () => {
     setShowForm((prevState) => !prevState)
   }
 
-  const profile = profileObj[id]
+  console.log(profileRating, profile?.rating)
 
   return (
     <div className="profile-page">
@@ -34,15 +37,24 @@ const ProfilePage = () => {
         </div>
         <div className="profile-page-info">
           <h2>{profile?.name}</h2>
+          <p>{profile?.rating}</p>
           <p>{profile?.description}</p>
         </div>
       </div>
       <BookingSideBar showForm={showForm}/>
       <div className="comments-container">
         <h2>See what all the buzz is about...</h2>
-        <Comments profile={profile} user={user} />
+        <Comments profile={profile} user={user} setProfileRating={setProfileRating} />
         {user?.id === profile?.userId &&
-          <EditProfileModal id={profile?.id} editName={profile?.name} editDescription={profile?.description} editImageUrl={profile?.imageUrl} editCategory={profile?.category} editLocation={profile?.location} userId={user?.id} />
+          <EditProfileModal
+            id={profile?.id}
+            editName={profile?.name}
+            editDescription={profile?.description}
+            editImageUrl={profile?.imageUrl}
+            editCategory={profile?.category}
+            editLocation={profile?.location}
+            userId={user?.id}
+          />
         }
       </div>
     </div>
