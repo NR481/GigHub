@@ -17,6 +17,7 @@ function App() {
       await dispatch(authenticate());
       setLoaded(true);
     })();
+    return "Cleanup"
   }, [dispatch]);
 
   if (!loaded) {
