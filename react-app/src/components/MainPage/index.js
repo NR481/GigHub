@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link, useHistory } from "react-router-dom"
 import { getFeaturedProfiles, addProfile } from "../../store/profiles"
 import { searchResults } from "../../store/search"
+import MapContainer from "../Map"
 import './MainPage.css'
 
 const MainPage = () => {
@@ -102,6 +103,7 @@ const MainPage = () => {
           )
           )}
       </div>
+      <MapContainer />
       <div className="profile-form-container">
         <div className="profile-form">
           <div className="create-profile-errors">

@@ -61,13 +61,17 @@ export const removeProfile = (id) => async (dispatch) => {
   if (response.ok) dispatch(deleteProfile(id))
 }
 
-const profilesReducer = (state = {}, action) => {
+const profilesReducer = (state = { profiles: {}, coordinates: {} }, action) => {
   let newState;
   switch (action.type) {
     case GET_PROFILES:
       newState = { ...state}
+      console.log(action.profiles)
       action.profiles.profiles.forEach(profile => {
-        newState[profile.id] = profile
+        newState.profiles[profile.id] = profile
+      })
+      action.profiles.coordinates.forEach(coordinate => {
+        newState.coordinates[coordinate.id] = coordinate
       })
       return newState
     case ADD_PROFILE:
