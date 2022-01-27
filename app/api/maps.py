@@ -1,12 +1,13 @@
 from flask import Blueprint
 from app.models import Profile
 from geopy.geocoders import GoogleV3
+import os
 
 maps_routes = Blueprint('maps', __name__)
 
 @maps_routes.route('/')
 def index():
-  geolocator = GoogleV3(api_key='AIzaSyAxA5IYnszZY16lmaNs_fjpzgY1P4fLfSY')
+  geolocator = GoogleV3(api_key=os.environ.get('GOOGLE_KEY'))
   profiles = Profile.query.all()
 
   locations = [profile.location for profile in profiles]
