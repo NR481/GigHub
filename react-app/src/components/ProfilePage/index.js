@@ -42,11 +42,6 @@ const ProfilePage = () => {
           }
           <p>{profile?.description}</p>
         </div>
-      </div>
-      <BookingSideBar showForm={showForm}/>
-      <div className="comments-container">
-        <h2>See what all the buzz is about...</h2>
-        <Comments profile={profile} user={user} setProfileRating={setProfileRating} />
         {user?.id === profile?.userId &&
           <EditProfileModal
             id={profile?.id}
@@ -58,6 +53,11 @@ const ProfilePage = () => {
             userId={user?.id}
           />
         }
+      </div>
+      <BookingSideBar showForm={showForm}/>
+      <div className="comments-container">
+        <h2>See what all the buzz is about...</h2>
+        <Comments profile={profile} user={user} setProfileRating={setProfileRating} />
       </div>
     </div>
   )
