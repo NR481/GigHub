@@ -54,10 +54,17 @@ const MainPage = () => {
         location,
         userId: +user?.id
       }
-      await dispatch(addProfile(newProfile))
-        .then((res) => history.push(`/profiles/${res.id}`))
+      const data = await dispatch(addProfile(newProfile))
+        // .then((res) => history.push(`/profiles/${res.id}`))
+      if (data.error) {
+        validationErrors.push(data.error)
+        setErrors(validationErrors)
+      } else {
+        history.push(`/profiles/${data.id}`)
+      }
     }
   }
+
 
 
   const submitSearch = async (e) => {

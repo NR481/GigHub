@@ -2,6 +2,8 @@ from flask import Blueprint, request
 from app.models import db, Profile, Comment
 from flask_login import login_required, current_user
 from ..forms import NewProfileForm
+from geopy.geocoders import GoogleV3
+import os
 
 profile_routes = Blueprint('profiles', __name__)
 
@@ -26,6 +28,10 @@ def new_profile():
       location=form.data['location'],
       userId=current_user.id
     )
+    geolocator = GoogleV3(api_key=os.environ.get('GOOGLE_KEY'))
+    location = geolocator.geocode(profile.location, timeout=None)
+    if location is None:
+      return {'error': 'Location must be a street address or city and state in the format city, state'}
 
     db.session.add(profile)
     db.session.commit()
