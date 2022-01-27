@@ -108,7 +108,7 @@ const MainPage = () => {
           )
           )}
       </div>
-      <MapContainer />
+      <MapContainer profiles={profiles} />
       <div className="profile-form-container">
         <div className="profile-form">
           <div className="create-profile-errors">

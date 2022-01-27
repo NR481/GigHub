@@ -11,11 +11,11 @@ def index():
   profiles = Profile.query.all()
 
   locations = [profile.location for profile in profiles]
-  coordinates = [geolocator.geocode(location) for location in locations]
+  coordinates = [geolocator.geocode(location, timeout=None) for location in locations]
   latitude = [coordinate.latitude for coordinate in coordinates]
   longitude = [coordinate.longitude for coordinate in coordinates]
   coordinate_pairs = list(zip(latitude, longitude))
   profile_ids = [profile.id for profile in profiles]
   coordinates_dict = dict(zip(profile_ids, coordinate_pairs))
 
-  return {'coordinates': [{'id': key, 'coordinate': list(value)} for key, value in coordinates_dict.items()]}
+  return {'coordinates': [{'id': key, 'coordinate': {'lat': value[0], 'lng': value[1]}} for key, value in coordinates_dict.items()]}
