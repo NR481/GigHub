@@ -2,24 +2,14 @@ from flask import Blueprint, request
 from app.models import db, Profile, Comment
 from flask_login import login_required, current_user
 from ..forms import NewProfileForm
-from geopy.geocoders import GoogleV3
 
 profile_routes = Blueprint('profiles', __name__)
 
 @profile_routes.route('/')
 def index():
-  geolocator = GoogleV3(api_key='AIzaSyAxA5IYnszZY16lmaNs_fjpzgY1P4fLfSY')
   profiles = Profile.query.all()
 
-  locations = [profile.location for profile in profiles]
-  coordinates = [geolocator.geocode(location) for location in locations]
-  latitude = [coordinate.latitude for coordinate in coordinates]
-  longitude = [coordinate.longitude for coordinate in coordinates]
-  coordinate_pairs = list(zip(latitude, longitude))
-  profile_ids = [profile.id for profile in profiles]
-  coordinates_dict = dict(zip(profile_ids, coordinate_pairs))
-
-  return {'profiles': [profile.to_dict() for profile in profiles], 'coordinates': [{'id': key, 'coordinate': list(value)} for key, value in coordinates_dict.items()]}
+  return {'profiles': [profile.to_dict() for profile in profiles]}
 
 @profile_routes.route('/', methods=['POST'])
 @login_required

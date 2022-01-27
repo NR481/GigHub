@@ -8,7 +8,7 @@ import EditProfileModal from "../EditProfile/EditProfileModal"
 import './ProfilePage.css'
 
 const ProfilePage = () => {
-  const profileObj = useSelector(state => state.profiles.profiles)
+  const profileObj = useSelector(state => state.profiles)
   const user = useSelector(state => state.session.user)
   const { id } = useParams()
   const dispatch = useDispatch()
