@@ -65,12 +65,11 @@ const profilesReducer = (state = { profiles: {}, coordinates: {} }, action) => {
   let newState;
   switch (action.type) {
     case GET_PROFILES:
-      newState = { ...state}
-      console.log(action.profiles)
+      newState = { ...state }
       action.profiles.profiles.forEach(profile => {
         newState.profiles[profile.id] = profile
       })
-      action.profiles.coordinates.forEach(coordinate => {
+      action.profiles.coordinates.forEach((coordinate) => {
         newState.coordinates[coordinate.id] = coordinate
       })
       return newState

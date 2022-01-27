@@ -17,9 +17,9 @@ def index():
   longitude = [coordinate.longitude for coordinate in coordinates]
   coordinate_pairs = list(zip(latitude, longitude))
   profile_ids = [profile.id for profile in profiles]
-  coordicates_dict = dict(zip(profile_ids, coordinate_pairs))
+  coordinates_dict = dict(zip(profile_ids, coordinate_pairs))
 
-  return {'profiles': [profile.to_dict() for profile in profiles], 'coordinates': list(coordicates_dict)}
+  return {'profiles': [profile.to_dict() for profile in profiles], 'coordinates': [{'id': key, 'coordinate': list(value)} for key, value in coordinates_dict.items()]}
 
 @profile_routes.route('/', methods=['POST'])
 @login_required

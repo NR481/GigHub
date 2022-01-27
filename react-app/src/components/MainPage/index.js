@@ -9,7 +9,7 @@ import './MainPage.css'
 const MainPage = () => {
   const dispatch = useDispatch()
   const history = useHistory()
-  const profilesObj = useSelector(state => state.profiles)
+  const profilesObj = useSelector(state => state.profiles.profiles)
   const user = useSelector(state => state.session.user)
 
   const [name, setName] = useState('')
