@@ -65,7 +65,7 @@ const profilesReducer = (state = {}, action) => {
   let newState;
   switch (action.type) {
     case GET_PROFILES:
-      newState = {}
+      newState = { ...state }
       action.profiles.profiles.forEach(profile => {
         newState[profile.id] = profile
       })

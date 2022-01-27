@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import commentsReducer from './comments';
+import mapsReducer from './maps';
 import profilesReducer from './profiles';
 import searchReducer from './search';
 import session from './session'
@@ -9,7 +10,8 @@ const rootReducer = combineReducers({
   session,
   profiles: profilesReducer,
   comments: commentsReducer,
-  search: searchReducer
+  search: searchReducer,
+  maps: mapsReducer
 });
 
 

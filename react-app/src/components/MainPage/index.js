@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useHistory } from "react-router-dom"
+import { getProfileCoordinates } from "../../store/maps"
 import { getFeaturedProfiles, addProfile } from "../../store/profiles"
 import { searchResults } from "../../store/search"
 import MapContainer from "../Map"
@@ -22,6 +23,10 @@ const MainPage = () => {
 
   useEffect(() => {
     dispatch(getFeaturedProfiles())
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(getProfileCoordinates())
   }, [dispatch])
 
   let profiles
