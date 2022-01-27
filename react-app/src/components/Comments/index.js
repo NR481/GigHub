@@ -43,6 +43,9 @@ const Comments = ({ profile, user, setProfileRating }) => {
   return (
     <>
       <div className="comments-container">
+        {comments?.length === 0 &&
+          <p className="no-comments">No activity yet... Be the first to comment!</p>
+        }
         {comments?.length > 0 &&
           comments.map(comment => (
             <div key={comment.id} className="single-comment">
