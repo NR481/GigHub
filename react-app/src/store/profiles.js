@@ -49,7 +49,7 @@ export const modifyProfile = (profile, id) => async (dispatch) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(profile)
   })
-  const data = response.json()
+  const data = await response.json()
   dispatch(editProfile(data))
   return data
 }
