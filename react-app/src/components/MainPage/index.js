@@ -45,6 +45,7 @@ const MainPage = () => {
     const imgRegex = /(http(s?):)|([/|.|\w|\s])*\.(?:jpg|gif|png)/
     if (!user) validationErrors.push('Please Log in or Sign up to create a profile')
     if (!imgRegex.test(imageUrl)) validationErrors.push('Please enter a valid Image URL')
+    if (description.length < 50) validationErrors.push('Description must be at least 50 characters')
 
     if (validationErrors.length === 0) {
       const newProfile = {
