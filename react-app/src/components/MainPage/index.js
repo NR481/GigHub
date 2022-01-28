@@ -57,7 +57,7 @@ const MainPage = () => {
       }
       const data = await dispatch(addProfile(newProfile))
       if (data.error) {
-        validationErrors.push(data)
+        validationErrors.push(data.error)
       } else {
         history.push(`/profiles/${data.id}`)
       }
