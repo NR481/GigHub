@@ -13,10 +13,9 @@ function App() {
 
   useEffect(() => {
     (async() => {
-      await dispatch(authenticate());
-      setLoaded(true);
+      await dispatch(authenticate())
+      setLoaded(true)
     })();
-    return "Cleanup"
   }, [dispatch]);
 
   if (!loaded) {

@@ -38,9 +38,20 @@ export const addProfile = (profile) => async (dispatch) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(profile)
   })
-  const data = await response.json()
-  dispatch(createProfile(data))
-  return data
+  if (response.ok) {
+    const data = await response.json()
+    console.log(data, '!!!!!!!!!!!')
+    dispatch(createProfile(data))
+    return data
+  } else if (response.status >= 400) {
+    const data = await response.json()
+    console.log(data, '************')
+    if (data.error) {
+      return data.error
+    }
+  } else {
+    return ['An error occurred. Please try again.']
+  }
 }
 
 export const modifyProfile = (profile, id) => async (dispatch) => {

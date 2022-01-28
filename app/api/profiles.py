@@ -30,8 +30,9 @@ def new_profile():
     )
     geolocator = GoogleV3(api_key=os.environ.get('GOOGLE_KEY'))
     location = geolocator.geocode(profile.location, timeout=None)
+    print(location, '!!!!!!!!!!!!!!!')
     if location is None:
-      return {'error': 'Location must be a street address or city and state in the format city, state'}
+      return {'error': 'Location is invalid'}, 500
 
     db.session.add(profile)
     db.session.commit()

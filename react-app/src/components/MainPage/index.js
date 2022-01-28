@@ -43,7 +43,6 @@ const MainPage = () => {
     const imgRegex = /(http(s?):)|([/|.|\w|\s])*\.(?:jpg|gif|png)/
     if (!user) validationErrors.push('Please Log in or Sign up to create a profile')
     if (!imgRegex.test(imageUrl)) validationErrors.push('Please enter a valid Image URL')
-    setErrors(validationErrors)
 
     if (validationErrors.length === 0) {
       const newProfile = {
@@ -55,14 +54,14 @@ const MainPage = () => {
         userId: +user?.id
       }
       const data = await dispatch(addProfile(newProfile))
-        // .then((res) => history.push(`/profiles/${res.id}`))
+      console.log(data)
       if (data.error) {
-        validationErrors.push(data.error)
-        setErrors(validationErrors)
+        validationErrors.push(data)
       } else {
         history.push(`/profiles/${data.id}`)
       }
     }
+    setErrors(validationErrors)
   }
 
 
