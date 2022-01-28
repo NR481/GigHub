@@ -1,0 +1,10 @@
+.marker-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.artist-img {
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+}

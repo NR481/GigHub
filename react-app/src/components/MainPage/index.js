@@ -59,10 +59,10 @@ const MainPage = () => {
       if (data.error) {
         validationErrors.push(data.error)
       } else {
-        history.push(`/profiles/${data.id}`)
+        return history.push(`/profiles/${data.id}`)
       }
     }
-    setErrors(validationErrors)
+    return setErrors(validationErrors)
   }
 
 

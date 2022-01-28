@@ -2,6 +2,7 @@ import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/ap
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import "./Map.css"
 
 const MapContainer = ({ profiles }) => {
   const coordinatesObj = useSelector(state => state.maps)
@@ -47,7 +48,12 @@ const MapContainer = ({ profiles }) => {
             clickable={true}
             onCloseClick={() => setSelected({})}
           >
-            <Link to={`/profiles/${name?.id}`}>{name?.name}</Link>
+            <Link to={`/profiles/${name?.id}`}>
+              <div className="marker-info">
+                {name?.name}
+                <img src={name?.imageUrl} alt="artist-pic" className="artist-img"/>
+              </div>
+            </Link>
           </InfoWindow>
         )}
       </GoogleMap>

@@ -14,7 +14,9 @@ const Comments = ({ profile, user, setProfileRating }) => {
   const [rating, setRating] = useState(5)
 
   useEffect(() => {
-    dispatch(profileComments(profile?.id))
+    if (profile) {
+      dispatch(profileComments(profile?.id))
+    }
   }, [dispatch, profile?.id])
 
   useEffect(() => {
