@@ -5,6 +5,8 @@ import { getProfileCoordinates } from "../../store/maps"
 import { getFeaturedProfiles, addProfile } from "../../store/profiles"
 import { searchResults } from "../../store/search"
 import MapContainer from "../Map"
+import githubLogo from "../../assets/github-logo.png"
+import linkedinLogo from "../../assets/linkedin-logo.png"
 import './MainPage.css'
 
 const MainPage = () => {
@@ -167,6 +169,20 @@ const MainPage = () => {
           </form>
         </div>
       </div>
+      <footer>
+        <div className="about-links">
+          <h2>GigHub</h2>
+          <p>Created by Nick Rogers 2022</p>
+          <div className="logos">
+            <a href="https://github.com/NR481">
+              <img src={githubLogo} alt="github-logo" className="github-logo"/>
+            </a>
+            <a href="https://www.linkedin.com/in/nick-rogers-635388107/">
+              <img src={linkedinLogo} alt="linkin-logo" className="linkedin-logo"/>
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
