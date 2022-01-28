@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useHistory } from "react-router-dom"
+import { getProfileCoordinates } from "../../store/maps"
 import { getFeaturedProfiles, addProfile } from "../../store/profiles"
 import { searchResults } from "../../store/search"
+import MapContainer from "../Map"
+import githubLogo from "../../assets/github-logo.png"
+import linkedinLogo from "../../assets/linkedin-logo.png"
 import './MainPage.css'
 
 const MainPage = () => {
@@ -23,6 +27,10 @@ const MainPage = () => {
     dispatch(getFeaturedProfiles())
   }, [dispatch])
 
+  useEffect(() => {
+    dispatch(getProfileCoordinates())
+  }, [dispatch])
+
   let profiles
   if (profilesObj) {
     profiles = Object.values(profilesObj)
@@ -37,7 +45,6 @@ const MainPage = () => {
     const imgRegex = /(http(s?):)|([/|.|\w|\s])*\.(?:jpg|gif|png)/
     if (!user) validationErrors.push('Please Log in or Sign up to create a profile')
     if (!imgRegex.test(imageUrl)) validationErrors.push('Please enter a valid Image URL')
-    setErrors(validationErrors)
 
     if (validationErrors.length === 0) {
       const newProfile = {
@@ -48,10 +55,16 @@ const MainPage = () => {
         location,
         userId: +user?.id
       }
-      await dispatch(addProfile(newProfile))
-        .then((res) => history.push(`/profiles/${res.id}`))
+      const data = await dispatch(addProfile(newProfile))
+      if (data.error) {
+        validationErrors.push(data.error)
+      } else {
+        history.push(`/profiles/${data.id}`)
+      }
     }
+    setErrors(validationErrors)
   }
+
 
 
   const submitSearch = async (e) => {
@@ -102,6 +115,7 @@ const MainPage = () => {
           )
           )}
       </div>
+      <MapContainer profiles={profiles} />
       <div className="profile-form-container">
         <div className="profile-form">
           <div className="create-profile-errors">
@@ -154,6 +168,20 @@ const MainPage = () => {
           </form>
         </div>
       </div>
+      <footer>
+        <div className="about-links">
+          <h2>GigHub</h2>
+          <p>Created by Nick Rogers 2022</p>
+          <div className="logos">
+            <a href="https://github.com/NR481">
+              <img src={githubLogo} alt="github-logo" className="github-logo"/>
+            </a>
+            <a href="https://www.linkedin.com/in/nick-rogers-635388107/">
+              <img src={linkedinLogo} alt="linkin-logo" className="linkedin-logo"/>
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }

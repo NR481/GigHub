@@ -39,7 +39,9 @@ export const addProfile = (profile) => async (dispatch) => {
     body: JSON.stringify(profile)
   })
   const data = await response.json()
-  dispatch(createProfile(data))
+  if (response.ok) {
+    dispatch(createProfile(data))
+  }
   return data
 }
 
@@ -50,7 +52,9 @@ export const modifyProfile = (profile, id) => async (dispatch) => {
     body: JSON.stringify(profile)
   })
   const data = await response.json()
-  dispatch(editProfile(data))
+  if (response.ok) {
+    dispatch(editProfile(data))
+  }
   return data
 }
 
@@ -65,7 +69,7 @@ const profilesReducer = (state = {}, action) => {
   let newState;
   switch (action.type) {
     case GET_PROFILES:
-      newState = { ...state}
+      newState = { ...state }
       action.profiles.profiles.forEach(profile => {
         newState[profile.id] = profile
       })

@@ -21,7 +21,6 @@ const EditProfileForm = ({ id, setModal, editName, editDescription, editImageUrl
     const imgRegex = /(http(s?):)|([/|.|\w|\s])*\.(?:jpg|gif|png)/
     if (!imgRegex.test(imageUrl)) validationErrors.push('Please enter a valid image URL')
     if (description.length < 50) validationErrors.push('Description must be at least 50 characters')
-    setErrors(validationErrors)
 
     if (validationErrors.length === 0) {
       const newProfile = {
@@ -32,9 +31,14 @@ const EditProfileForm = ({ id, setModal, editName, editDescription, editImageUrl
         location,
         userId
       }
-      await dispatch(modifyProfile(newProfile, id))
-      setModal(false)
+      const data = await dispatch(modifyProfile(newProfile, id))
+      if (data.error) {
+        validationErrors.push(data.error)
+      } else {
+        return setModal(false)
+      }
     }
+    return setErrors(validationErrors)
   }
 
   const deleteProfile = async (e) => {

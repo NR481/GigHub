@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import './SignupForm.css'
 
-const SignUpForm = ({ setModal }) => {
+const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -31,8 +31,9 @@ const SignUpForm = ({ setModal }) => {
           validationErrors.push(message)
         })
       }
+      return data
     }
-    setErrors(validationErrors)
+    return setErrors(validationErrors)
   };
 
   const updateUsername = (e) => {

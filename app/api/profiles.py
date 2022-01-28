@@ -2,12 +2,15 @@ from flask import Blueprint, request
 from app.models import db, Profile, Comment
 from flask_login import login_required, current_user
 from ..forms import NewProfileForm
+from geopy.geocoders import GoogleV3
+import os
 
 profile_routes = Blueprint('profiles', __name__)
 
 @profile_routes.route('/')
 def index():
   profiles = Profile.query.all()
+
   return {'profiles': [profile.to_dict() for profile in profiles]}
 
 @profile_routes.route('/', methods=['POST'])
@@ -25,6 +28,10 @@ def new_profile():
       location=form.data['location'],
       userId=current_user.id
     )
+    geolocator = GoogleV3(api_key=os.environ.get('GOOGLE_KEY'))
+    location = geolocator.geocode(profile.location, timeout=None)
+    if location is None:
+      return {'error': 'Location is invalid'}, 500
 
     db.session.add(profile)
     db.session.commit()
@@ -46,6 +53,11 @@ def edit_profile(id):
     profile.category = form.data['category']
     profile.location = form.data['location']
     profile.userId = current_user.id
+
+    geolocator = GoogleV3(api_key=os.environ.get('GOOGLE_KEY'))
+    location = geolocator.geocode(profile.location, timeout=None)
+    if location is None:
+      return {'error': 'Location is invalid'}, 500
 
     db.session.commit()
     return profile.to_dict()
