@@ -56,7 +56,6 @@ const MainPage = () => {
         userId: +user?.id
       }
       const data = await dispatch(addProfile(newProfile))
-      console.log(data)
       if (data.error) {
         validationErrors.push(data)
       } else {
