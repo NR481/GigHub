@@ -30,7 +30,6 @@ def new_profile():
     )
     geolocator = GoogleV3(api_key=os.environ.get('GOOGLE_KEY'))
     location = geolocator.geocode(profile.location, timeout=None)
-    print(location, '!!!!!!!!!!!!!!!')
     if location is None:
       return {'error': 'Location is invalid'}, 500
 
@@ -54,6 +53,11 @@ def edit_profile(id):
     profile.category = form.data['category']
     profile.location = form.data['location']
     profile.userId = current_user.id
+
+    geolocator = GoogleV3(api_key=os.environ.get('GOOGLE_KEY'))
+    location = geolocator.geocode(profile.location, timeout=None)
+    if location is None:
+      return {'error': 'Location is invalid'}, 500
 
     db.session.commit()
     return profile.to_dict()
