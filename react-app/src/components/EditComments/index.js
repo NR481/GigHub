@@ -35,6 +35,7 @@ const EditCommentForm = ({ id, user, profile, editComment, editRating, setModal,
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           placeholder="Leave a comment..."
+          required
         />
         <label>Rating: </label>
         <select
