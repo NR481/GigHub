@@ -7,6 +7,7 @@ import { searchResults } from "../../store/search"
 import MapContainer from "../Map"
 import githubLogo from "../../assets/github-logo.png"
 import linkedinLogo from "../../assets/linkedin-logo.png"
+import defaultImg from "../../assets/music-notes.jpeg"
 import './MainPage.css'
 
 const MainPage = () => {
@@ -110,6 +111,7 @@ const MainPage = () => {
                   src={profile.imageUrl}
                   alt='artist headshots'
                   className="profile-img"
+                  onError={(e) => e.target.src = defaultImg}
                 />
               </Link>
             </div>

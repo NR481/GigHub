@@ -5,6 +5,7 @@ import { getFeaturedProfiles } from "../../store/profiles"
 import BookingSideBar from "../BookingSideBar"
 import Comments from "../Comments"
 import EditProfileModal from "../EditProfile/EditProfileModal"
+import defaultImg from "../../assets/music-notes.jpeg";
 import './ProfilePage.css'
 
 const ProfilePage = () => {
@@ -30,7 +31,12 @@ const ProfilePage = () => {
     <div className="profile-page">
       <div className="profile-page-container">
         <div className="image-btn">
-          <img src={profile?.imageUrl} alt="artist pic" className="profile-page-img"/>
+          <img
+            src={profile?.imageUrl}
+            alt="artist pic"
+            className="profile-page-img"
+            onError={(e) => e.target.src = defaultImg}
+          />
           {user?.id && user?.id !== profile?.userId &&
             <button onClick={onClick}>Book This Artist</button>
           }
