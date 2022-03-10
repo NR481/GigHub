@@ -75,3 +75,15 @@
   font-size: 30px;
   margin: 0 auto;
 }
+
+@media screen and (max-width: 1200px) {
+  .profile-page-container {
+    padding: 0 40px 40px;
+  }
+
+  .profile-page-info {
+    margin-left: -40px;
+  }
+
+
+}

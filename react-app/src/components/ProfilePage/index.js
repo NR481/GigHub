@@ -5,7 +5,7 @@ import { getFeaturedProfiles } from "../../store/profiles"
 import BookingSideBar from "../BookingSideBar"
 import Comments from "../Comments"
 import EditProfileModal from "../EditProfile/EditProfileModal"
-import defaultImg from "../../assets/music-notes.jpeg";
+import defaultImg from "../../assets/music-notes.jpeg"
 import './ProfilePage.css'
 
 const ProfilePage = () => {
