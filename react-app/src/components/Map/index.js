@@ -14,7 +14,7 @@ const MapContainer = ({ profiles }) => {
   }
 
   const mapStyles = {
-    height: '60vh',
+    height: '600px',
     width: '100%'
   }
 
