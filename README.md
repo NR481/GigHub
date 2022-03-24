@@ -9,6 +9,7 @@ GigHub is a platform for musicians looking to advertise their services. Consumer
 - React
 - Redux
 - Node.js
+- Python
 - Flask
 - SQL Alchemy
 - Alembic
