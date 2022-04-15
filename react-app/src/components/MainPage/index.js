@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom"
 import { getProfileCoordinates } from "../../store/maps"
 import { getFeaturedProfiles, addProfile } from "../../store/profiles"
 import { searchResults } from "../../store/search"
+import { FileUploader } from "react-drag-drop-files"
 import MapContainer from "../Map"
 import githubLogo from "../../assets/github-logo.png"
 import linkedinLogo from "../../assets/linkedin-logo.png"
@@ -78,6 +79,8 @@ const MainPage = () => {
     history.push('/search')
   }
 
+  const fileTypes = ['jpeg', 'png']
+
   return (
     <div>
       <div className="search-container">
@@ -146,18 +149,23 @@ const MainPage = () => {
                 placeholder="Description of services"
                 required
               />
-              <label>
-                <input
-                  type="file"
-                  onChange={(e) => setImage(e.target.files[0])}
-                  accept="image/*"
-                  id="file-upload"
-                  // value={imageUrl}
-                  // onChange={(e) => setImageUrl(e.target.value)}
-                  // placeholder="Image URL"
-                  // required
-                />
-              </label>
+              <FileUploader
+                handleChange={(file) => setImage(file)}
+                types={fileTypes}
+                name="file"
+                label="Upload an image or drop your image file here"
+                onTypeError={(err) => console.log(err)}
+              />
+              {/* <input
+                type="file"
+                onChange={(e) => setImage(e.target.files[0])}
+                accept="image/*"
+                id="file-upload"
+                // value={imageUrl}
+                // onChange={(e) => setImageUrl(e.target.value)}
+                // placeholder="Image URL"
+                // required
+              /> */}
             </div>
             <div className="col-b">
               <input
