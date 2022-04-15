@@ -9,6 +9,7 @@ import MapContainer from "../Map"
 import githubLogo from "../../assets/github-logo.png"
 import linkedinLogo from "../../assets/linkedin-logo.png"
 import defaultImg from "../../assets/music-notes.jpeg"
+import checkMark from "../../assets/checkmark.png"
 import './MainPage.css'
 
 const MainPage = () => {
@@ -68,8 +69,6 @@ const MainPage = () => {
     return setErrors(validationErrors)
   }
 
-
-
   const submitSearch = async (e) => {
     e.preventDefault()
 
@@ -79,7 +78,7 @@ const MainPage = () => {
     history.push('/search')
   }
 
-  const fileTypes = ['jpeg', 'png']
+  const fileTypes = ['jpeg', 'png', 'jpg']
 
   return (
     <div>
@@ -121,7 +120,7 @@ const MainPage = () => {
           )
           )}
       </div>
-      <MapContainer profiles={profiles} />
+      {/* <MapContainer profiles={profiles} /> */}
       <div className="profile-form-container">
         <div className="profile-form">
           <div className="create-profile-errors">
@@ -136,49 +135,69 @@ const MainPage = () => {
             <span className="emphasis"> start getting booked!</span>
           </h2>
           <form onSubmit={submitNewProfile} className="profile-inputs">
-            <div className="col-a">
-              <input
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Name"
-                required
-              />
-              <input
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                placeholder="Description of services"
-                required
-              />
+            <div className="profile-fields">
+              <div className="col-a">
+                <input
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Name"
+                  required
+                />
+                <input
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  placeholder="Description of services"
+                  required
+                />
+                {/* <input
+                  type="file"
+                  onChange={(e) => setImage(e.target.files[0])}
+                  accept="image/*"
+                  id="file-upload"
+                  // value={imageUrl}
+                  // onChange={(e) => setImageUrl(e.target.value)}
+                  // placeholder="Image URL"
+                  // required
+                /> */}
+              </div>
+              <div className="col-b">
+                <input
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  placeholder="Musical Genre(s)"
+                  required
+                />
+                <input
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  placeholder="Location"
+                  required
+                />
+              </div>
+            </div>
+            <div className="profile-inputs">
               <FileUploader
                 handleChange={(file) => setImage(file)}
                 types={fileTypes}
                 name="file"
-                label="Upload an image or drop your image file here"
+                // label="Upload an image or drop your image file here"
                 onTypeError={(err) => console.log(err)}
-              />
-              {/* <input
-                type="file"
-                onChange={(e) => setImage(e.target.files[0])}
-                accept="image/*"
-                id="file-upload"
-                // value={imageUrl}
-                // onChange={(e) => setImageUrl(e.target.value)}
-                // placeholder="Image URL"
-                // required
-              /> */}
-            </div>
-            <div className="col-b">
-              <input
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                placeholder="Musical Genre(s)"
-                required
-              />
-              <input
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-                placeholder="Location"
-                required
+                children={
+                  <div className="file-drop">
+                    <p>Drag and drop file to upload profile image</p>
+                    <p>or</p>
+                    <p><u>Browse local files</u></p>
+                    {image && (
+                      <div className="file-loaded">
+                        <p>{image.name}</p>
+                        <img src={checkMark} alt="check mark" className="check-mark"/>
+                      </div>
+                    )}
+                    {!image && (
+                      <p>No file loaded</p>
+                    )}
+                  </div>
+                }
               />
               <button className="profile-button">Create Profile</button>
             </div>
