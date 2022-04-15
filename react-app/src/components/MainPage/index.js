@@ -146,16 +146,18 @@ const MainPage = () => {
                 placeholder="Description of services"
                 required
               />
-              <input
-                type="file"
-                onChange={(e) => setImage(e.target.files[0])}
-                accept="image/*"
-                id="file-upload"
-                // value={imageUrl}
-                // onChange={(e) => setImageUrl(e.target.value)}
-                // placeholder="Image URL"
-                // required
-              />
+              <label>
+                <input
+                  type="file"
+                  onChange={(e) => setImage(e.target.files[0])}
+                  accept="image/*"
+                  id="file-upload"
+                  // value={imageUrl}
+                  // onChange={(e) => setImageUrl(e.target.value)}
+                  // placeholder="Image URL"
+                  // required
+                />
+              </label>
             </div>
             <div className="col-b">
               <input

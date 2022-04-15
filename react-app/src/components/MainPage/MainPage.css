@@ -150,6 +150,26 @@
   text-indent: 10px;
 }
 
+#file-upload {
+  border: none;
+  font-family: inherit;
+  font-size: 18px;
+  color: white;
+}
+
+#file-upload::file-selector-button {
+  background-color: white;
+  font-family: inherit;
+  color: #065c62;
+  font-size: 15px;
+  border: none;
+  font-weight: bold;
+  border-radius: 5px;
+  width: 100px;
+  height: 30px;
+  /* margin-top: -15px; */
+}
+
 .profile-button {
   width: 260px;
   height: 33px;
