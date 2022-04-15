@@ -45,9 +45,9 @@ const MainPage = () => {
     e.preventDefault()
 
     const validationErrors = []
-    const imgRegex = /(http(s?):)|([/|.|\w|\s])*\.(?:jpg|gif|png)/
+    const imgRegex = /(http(s?):)|([/|.|\w|\s])*\.(?:jpg|jpeg|png)/
     if (!user) validationErrors.push('Please Log in or Sign up to create a profile')
-    // if (!imgRegex.test(imageUrl)) validationErrors.push('Please enter a valid Image URL')
+    if (!imgRegex.test(image)) validationErrors.push('Please enter a valid Image File')
     if (description.length < 50) validationErrors.push('Description must be at least 50 characters')
 
     if (validationErrors.length === 0) {
@@ -175,7 +175,7 @@ const MainPage = () => {
                 />
               </div>
             </div>
-            <div className="profile-inputs">
+            <div className="image-button">
               <FileUploader
                 handleChange={(file) => setImage(file)}
                 types={fileTypes}
@@ -194,7 +194,7 @@ const MainPage = () => {
                       </div>
                     )}
                     {!image && (
-                      <p>No file loaded</p>
+                      <p>No file added</p>
                     )}
                   </div>
                 }
