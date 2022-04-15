@@ -18,7 +18,7 @@ const MainPage = () => {
 
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
-  const [imageUrl, setImageUrl] = useState('')
+  const [image, setImage] = useState('')
   const [category, setCategory] = useState('')
   const [location, setLocation] = useState('')
   const [query, setQuery] = useState('')
@@ -45,14 +45,14 @@ const MainPage = () => {
     const validationErrors = []
     const imgRegex = /(http(s?):)|([/|.|\w|\s])*\.(?:jpg|gif|png)/
     if (!user) validationErrors.push('Please Log in or Sign up to create a profile')
-    if (!imgRegex.test(imageUrl)) validationErrors.push('Please enter a valid Image URL')
+    // if (!imgRegex.test(imageUrl)) validationErrors.push('Please enter a valid Image URL')
     if (description.length < 50) validationErrors.push('Description must be at least 50 characters')
 
     if (validationErrors.length === 0) {
       const newProfile = {
         name,
         description,
-        imageUrl,
+        image,
         category,
         location,
         userId: +user?.id
@@ -147,10 +147,14 @@ const MainPage = () => {
                 required
               />
               <input
-                value={imageUrl}
-                onChange={(e) => setImageUrl(e.target.value)}
-                placeholder="Image URL"
-                required
+                type="file"
+                onChange={(e) => setImage(e.target.files[0])}
+                accept="image/*"
+                id="file-upload"
+                // value={imageUrl}
+                // onChange={(e) => setImageUrl(e.target.value)}
+                // placeholder="Image URL"
+                // required
               />
             </div>
             <div className="col-b">
