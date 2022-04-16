@@ -1,9 +1,15 @@
+import boto3
+import botocore
 from flask import Blueprint, request
 from app.models import db, Profile, Comment
 from flask_login import login_required, current_user
 from ..forms import NewProfileForm
 from geopy.geocoders import GoogleV3
 import os
+
+from app.config import Config
+from app.aws_s3 import *
+
 
 profile_routes = Blueprint('profiles', __name__)
 
@@ -16,18 +22,34 @@ def index():
 @profile_routes.route('/', methods=['POST'])
 @login_required
 def new_profile():
-  form = NewProfileForm()
-  form['csrf_token'].data = request.cookies['csrf_token']
+  if "image" not in request.files:
+    return "No image key in request.files"
 
-  if form.validate_on_submit():
+  image_file = request.files["image"]
+
+  if image_file:
+    image_url = upload_file_to_s3(image_file, Config.S3_BUCKET)
+
     profile = Profile(
-      name=form.data['name'],
-      description=form.data['description'],
-      imageUrl=form.data['imageUrl'],
-      category=form.data['category'],
-      location=form.data['location'],
-      userId=current_user.id
+      name=request.form.get('name'),
+      description=request.form.get('description'),
+      category=request.form.get('category'),
+      location=request.form.get('location'),
+      userId=request.form.get('userId'),
+      imageUrl = image_url
     )
+  # form = NewProfileForm()
+  # form['csrf_token'].data = request.cookies['csrf_token']
+
+  # if form.validate_on_submit():
+  #   profile = Profile(
+  #     name=form.data['name'],
+  #     description=form.data['description'],
+  #     imageUrl=form.data['imageUrl'],
+  #     category=form.data['category'],
+  #     location=form.data['location'],
+  #     userId=current_user.id
+  #   )
     geolocator = GoogleV3(api_key=os.environ.get('GOOGLE_KEY'))
     location = geolocator.geocode(profile.location, timeout=None)
     if location is None:
@@ -37,7 +59,7 @@ def new_profile():
     db.session.commit()
 
     return profile.to_dict()
-  return form.errors
+  return "No file attached!"
 
 @profile_routes.route('/<int:id>/', methods=['PUT'])
 @login_required

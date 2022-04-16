@@ -33,16 +33,36 @@ export const getFeaturedProfiles = () => async (dispatch) => {
 }
 
 export const addProfile = (profile) => async (dispatch) => {
+  const { name, description, image, category, location, userId } = profile
+  const form = new FormData()
+  form.append("name", name)
+  form.append("description", description)
+  form.append("category", category)
+  form.append("location", location)
+  form.append("userId", userId)
+
+  if (image) form.append("image", image)
+
   const response = await fetch('/api/profiles/', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(profile)
+    body: form
   })
+
   const data = await response.json()
   if (response.ok) {
     dispatch(createProfile(data))
   }
   return data
+  // const response = await fetch('/api/profiles/', {
+  //   method: 'POST',
+  //   headers: { 'Content-Type': 'application/json' },
+  //   body: JSON.stringify(profile)
+  // })
+  // const data = await response.json()
+  // if (response.ok) {
+  //   dispatch(createProfile(data))
+  // }
+  // return data
 }
 
 export const modifyProfile = (profile, id) => async (dispatch) => {

@@ -4,10 +4,12 @@ import { Link, useHistory } from "react-router-dom"
 import { getProfileCoordinates } from "../../store/maps"
 import { getFeaturedProfiles, addProfile } from "../../store/profiles"
 import { searchResults } from "../../store/search"
+import { FileUploader } from "react-drag-drop-files"
 import MapContainer from "../Map"
 import githubLogo from "../../assets/github-logo.png"
 import linkedinLogo from "../../assets/linkedin-logo.png"
 import defaultImg from "../../assets/music-notes.jpeg"
+import checkMark from "../../assets/checkmark.png"
 import './MainPage.css'
 
 const MainPage = () => {
@@ -18,7 +20,7 @@ const MainPage = () => {
 
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
-  const [imageUrl, setImageUrl] = useState('')
+  const [image, setImage] = useState('')
   const [category, setCategory] = useState('')
   const [location, setLocation] = useState('')
   const [query, setQuery] = useState('')
@@ -43,16 +45,16 @@ const MainPage = () => {
     e.preventDefault()
 
     const validationErrors = []
-    const imgRegex = /(http(s?):)|([/|.|\w|\s])*\.(?:jpg|gif|png)/
+    const imgRegex = /\.(gif|jpe?g|png)$/i
     if (!user) validationErrors.push('Please Log in or Sign up to create a profile')
-    if (!imgRegex.test(imageUrl)) validationErrors.push('Please enter a valid Image URL')
+    if (!imgRegex.test(image.name)) validationErrors.push('Please enter a valid Image File')
     if (description.length < 50) validationErrors.push('Description must be at least 50 characters')
 
     if (validationErrors.length === 0) {
       const newProfile = {
         name,
         description,
-        imageUrl,
+        image,
         category,
         location,
         userId: +user?.id
@@ -67,8 +69,6 @@ const MainPage = () => {
     return setErrors(validationErrors)
   }
 
-
-
   const submitSearch = async (e) => {
     e.preventDefault()
 
@@ -77,6 +77,8 @@ const MainPage = () => {
     setQuery('')
     history.push('/search')
   }
+
+  const fileTypes = ['jpeg', 'png', 'jpg']
 
   return (
     <div>
@@ -133,38 +135,69 @@ const MainPage = () => {
             <span className="emphasis"> start getting booked!</span>
           </h2>
           <form onSubmit={submitNewProfile} className="profile-inputs">
-            <div className="col-a">
-              <input
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Name"
-                required
-              />
-              <input
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                placeholder="Description of services"
-                required
-              />
-              <input
-                value={imageUrl}
-                onChange={(e) => setImageUrl(e.target.value)}
-                placeholder="Image URL"
-                required
-              />
+            <div className="profile-fields">
+              <div className="col-a">
+                <input
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Name"
+                  required
+                />
+                <input
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  placeholder="Description of services"
+                  required
+                />
+                {/* <input
+                  type="file"
+                  onChange={(e) => setImage(e.target.files[0])}
+                  accept="image/*"
+                  id="file-upload"
+                  // value={imageUrl}
+                  // onChange={(e) => setImageUrl(e.target.value)}
+                  // placeholder="Image URL"
+                  // required
+                /> */}
+              </div>
+              <div className="col-b">
+                <input
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  placeholder="Musical Genre(s)"
+                  required
+                />
+                <input
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  placeholder="Location"
+                  required
+                />
+              </div>
             </div>
-            <div className="col-b">
-              <input
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                placeholder="Musical Genre(s)"
-                required
-              />
-              <input
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-                placeholder="Location"
-                required
+            <div className="image-button">
+              <FileUploader
+                handleChange={(file) => setImage(file)}
+                types={fileTypes}
+                name="file"
+                // label="Upload an image or drop your image file here"
+                onTypeError={(err) => console.log(err)}
+                children={
+                  <div className="file-drop">
+                    <p>Drag and drop file to upload profile image</p>
+                    <p>or</p>
+                    <p><u>Browse local files</u></p>
+                    {image && (
+                      <div className="file-loaded">
+                        <p>{image.name}</p>
+                        <img src={checkMark} alt="check mark" className="check-mark"/>
+                      </div>
+                    )}
+                    {!image && (
+                      <p>No file added</p>
+                    )}
+                  </div>
+                }
               />
               <button className="profile-button">Create Profile</button>
             </div>
