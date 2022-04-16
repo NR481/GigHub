@@ -45,9 +45,9 @@ const MainPage = () => {
     e.preventDefault()
 
     const validationErrors = []
-    const imgRegex = /(http(s?):)|([/|.|\w|\s])*\.(?:jpg|jpeg|png)/
+    const imgRegex = /\.(gif|jpe?g|png)$/i
     if (!user) validationErrors.push('Please Log in or Sign up to create a profile')
-    if (!imgRegex.test(image)) validationErrors.push('Please enter a valid Image File')
+    if (!imgRegex.test(image.name)) validationErrors.push('Please enter a valid Image File')
     if (description.length < 50) validationErrors.push('Description must be at least 50 characters')
 
     if (validationErrors.length === 0) {
@@ -120,7 +120,7 @@ const MainPage = () => {
           )
           )}
       </div>
-      {/* <MapContainer profiles={profiles} /> */}
+      <MapContainer profiles={profiles} />
       <div className="profile-form-container">
         <div className="profile-form">
           <div className="create-profile-errors">
