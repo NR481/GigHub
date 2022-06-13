@@ -78,6 +78,15 @@ const MainPage = () => {
     history.push('/search')
   }
 
+  const handleKeyPress = async (e) => {
+    if (e.code === "Enter" || e.code === "NumpadEnter") {
+      const input = { query }
+      await dispatch(searchResults(input))
+      setQuery('')
+      history.push('/search')
+    }
+  }
+
   const fileTypes = ['jpeg', 'png', 'jpg']
 
   return (
@@ -94,6 +103,7 @@ const MainPage = () => {
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search artists..."
           className="search-bar"
+          onKeyPress={handleKeyPress}
         />
         <button onClick={submitSearch}>Search</button>
       </div>
