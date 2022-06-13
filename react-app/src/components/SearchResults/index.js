@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import defaultImg from "../../assets/music-notes.jpeg"
 import './SearchResults.css'
 
 const SearchPage = () => {
@@ -19,7 +20,14 @@ const SearchPage = () => {
         {results?.length > 0 &&
           results.map(result => (
             <div key={result.id} className="search-listing">
-              <Link to={`/profiles/${result.id}`}><img src={result.imageUrl} className="search-img" alt='artist pic'/></Link>
+              <Link to={`/profiles/${result.id}`}>
+                <img
+                  src={result.imageUrl}
+                  className="search-img"
+                  alt='artist pic'
+                  onError={(e) => e.target.src = defaultImg}
+                />
+              </Link>
               <div className="search-info">
                 <p className="search-prod-title">{result.name}</p>
                 <p className="search-description">{result.description}</p>
