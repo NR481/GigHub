@@ -38,18 +38,7 @@ def new_profile():
       userId=request.form.get('userId'),
       imageUrl = image_url
     )
-  # form = NewProfileForm()
-  # form['csrf_token'].data = request.cookies['csrf_token']
 
-  # if form.validate_on_submit():
-  #   profile = Profile(
-  #     name=form.data['name'],
-  #     description=form.data['description'],
-  #     imageUrl=form.data['imageUrl'],
-  #     category=form.data['category'],
-  #     location=form.data['location'],
-  #     userId=current_user.id
-  #   )
     geolocator = GoogleV3(api_key=os.environ.get('GOOGLE_KEY'))
     location = geolocator.geocode(profile.location, timeout=None)
     if location is None:
