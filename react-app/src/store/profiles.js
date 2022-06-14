@@ -53,16 +53,6 @@ export const addProfile = (profile) => async (dispatch) => {
     dispatch(createProfile(data))
   }
   return data
-  // const response = await fetch('/api/profiles/', {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify(profile)
-  // })
-  // const data = await response.json()
-  // if (response.ok) {
-  //   dispatch(createProfile(data))
-  // }
-  // return data
 }
 
 export const modifyProfile = (profile, id) => async (dispatch) => {
