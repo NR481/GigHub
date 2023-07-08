@@ -1,30 +1,30 @@
 .edit-comments-form {
-  height: 100px;
-  width: 500px;
-  margin-top: 40px;
-  font-family: "Libre Baskerville", serif;
-  padding-bottom: 20px;
+    height: 100px;
+    width: 500px;
+    margin-top: 40px;
+    font-family: "Libre Baskerville", serif;
+    padding-bottom: 20px;
 }
 
 .edit-comments-inputs {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 400px;
-  margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    margin: 0 auto;
 }
 
 .edit-comments-inputs > input {
-  margin-right: 20px;
-  width: 200px;
-  height: 30px;
-  text-indent: 10px;
-  border: 1px solid lightgray;
-  border-radius: 5px;
+    margin-right: 20px;
+    width: 200px;
+    height: 30px;
+    text-indent: 10px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
 }
 
 .edit-comments-inputs > label {
-  margin-right: 10px;
+    margin-right: 10px;
 }
 
 .edit-comments-buttons {
@@ -35,16 +35,16 @@
 }
 
 .edit-comments-buttons > button {
-  margin: 0 10px;
-  width: 150px;
-  background-color: #FC5647;
-  border: none;
-  height: 30px;
-  color: white;
-  font-family: inherit;
-  border-radius: 5px;
+    margin: 0 10px;
+    width: 150px;
+    background-color: #fc5647;
+    border: none;
+    height: 30px;
+    color: white;
+    font-family: inherit;
+    border-radius: 5px;
 }
 
 .edit-comments-inputs > select {
-  color: #FC5647;
+    color: #fc5647;
 }

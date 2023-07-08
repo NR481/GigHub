@@ -1,35 +1,35 @@
 .search-container {
-  font-family: "Libre Baskerville", serif;
+    font-family: "Libre Baskerville", serif;
 }
 
 .search-listing {
-  display: flex;
-  margin: 30px 0;
-  padding-bottom: 30px;
-  border-bottom: 1px solid lightgray;
+    display: flex;
+    margin: 30px 0;
+    padding-bottom: 30px;
+    border-bottom: 1px solid lightgray;
 }
 
 .search-img {
-  height: 300px;
-  width: 300px;
-  object-fit: cover;
-  border-radius: 5px;
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+    border-radius: 5px;
 }
 
 .search-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  height: 250px;
-  padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 250px;
+    padding: 30px;
 }
 
 .search-description {
-  line-height: 1.5;
-  overflow: scroll;
-  max-height: 150px;
+    line-height: 1.5;
+    overflow: scroll;
+    max-height: 150px;
 }
 
 .search-title {
-  margin-top: 40px;
+    margin-top: 40px;
 }
